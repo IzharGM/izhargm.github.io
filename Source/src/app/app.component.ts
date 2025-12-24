@@ -24,7 +24,7 @@ export class AppComponent {
     { name: "home" },
     { name: "about" },
     { name: "career" },
-    { name: "papers" },
+    // { name: "papers" },  // Hidden
     { name: "projects" },
     { name: "coursework" }
     // { name: "gym" }  // Hidden but route still works

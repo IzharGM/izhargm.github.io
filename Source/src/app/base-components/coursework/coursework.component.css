@@ -16,30 +16,12 @@
     text-align: center;
 }
 
-.coursework-columns {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: center;
-}
-
-.course-category {
-    flex: 1 1 300px;
-    padding: 1.5rem;
-}
-
-.course-category h3 {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    color: #8f8f8f;
-}
-
-.course-category ul {
+.coursework-list {
     list-style-type: disc;
     padding-left: 1.5rem;
 }
 
-.course-category li {
+.coursework-list li {
     margin-bottom: 0.5rem;
     color: #ffffff;
     font-size: 1rem;

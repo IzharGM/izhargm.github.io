@@ -19,10 +19,10 @@ export class ProjectsComponent implements OnInit {
   projects = Projects
 
   get relevantProjects() {
-    return this.projects.filter(p => p.relevant);
+    return this.projects.filter(p => p.relevant !== false);  // defaults to true
   }
 
   get hiddenProjects() {
-    return this.projects.filter(p => !p.relevant);
+    return this.projects.filter(p => p.relevant === false);  // only explicitly false
   }
 }

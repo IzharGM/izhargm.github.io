@@ -15,8 +15,8 @@
       </div>
     </div>
 
-    <!-- Toggle button -->
-    <button class="toggle-button" (click)="showAllProjects = !showAllProjects">
+    <!-- Toggle button (only show if there are hidden projects) -->
+    <button *ngIf="hiddenProjects.length > 0" class="toggle-button" (click)="showAllProjects = !showAllProjects">
       {{ showAllProjects ? 'Show Less' : 'Show More' }}
       <img src="assets/arrow_down.png" alt="Arrow"
         [style.transform]="showAllProjects ? 'rotate(-180deg)' : 'rotate(0deg)'"
