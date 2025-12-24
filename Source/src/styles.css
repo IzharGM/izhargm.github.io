@@ -1,5 +1,18 @@
+:root {
+    /* Mechanical Engineering Color Palette */
+    --bg-primary: #0a0f14;
+    --bg-secondary: #111920;
+    --bg-card: #151d26;
+    --border-color: #2a3a4a;
+    --accent-primary: #e85d04;  /* Industrial Orange */
+    --accent-secondary: #3d5a80; /* Steel Blue */
+    --text-primary: #e8eaed;
+    --text-secondary: #8b9caa;
+    --metallic: #4a6075;
+}
+
 html {
-    background-color: rgb(15, 15, 17);
+    background-color: var(--bg-primary);
     scroll-behavior: smooth;
 }
 
@@ -14,6 +27,31 @@ body {
     padding: 0;
     box-sizing: border-box;
     background-color: transparent;
-    font-family: "Monaco", "Lucida Console", monospace;
-    color: white;
+    font-family: "IBM Plex Mono", "Consolas", monospace;
+    color: var(--text-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* Technical accent line for headings */
+h1::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-primary), transparent);
+    margin-top: 0.5rem;
+}
+
+/* Blueprint grid background pattern */
+.blueprint-grid {
+    background-image: 
+        linear-gradient(rgba(61, 90, 128, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(61, 90, 128, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
 }

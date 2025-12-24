@@ -4,9 +4,11 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    background-color: rgb(15, 15, 17);
+    background-color: rgba(10, 15, 20, 0.95);
+    border-bottom: 1px solid var(--border-color);
     z-index: 1000;
     transition: transform 0.15s ease;
+    backdrop-filter: blur(8px);
 }
 
 .top-bar {
@@ -19,30 +21,55 @@
 }
 
 .name-header {
-    font-size: 1.4rem;
-    color: white;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
     margin: 0;
     text-wrap: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.name-header::before {
+    content: "//";
+    color: var(--accent-primary);
+    margin-right: 0.5rem;
+    font-weight: 400;
 }
 
 .hamburger {
-    display: none; /* Hidden by default */
+    display: none;
     font-size: 2rem;
     background: none;
     border: none;
-    color: white;
+    color: var(--accent-primary);
     cursor: pointer;
 }
 
 .nav-header {
-    font-size: 0.8rem;
-    color: white;
+    font-family: "Rajdhani", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
     margin-right: 6%;
     margin-top: 0%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 3rem
+    gap: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+.nav-header a h3 {
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.nav-header a:hover h3 {
+    color: var(--accent-primary);
 }
 
 .nav-bar.hidden {
@@ -54,8 +81,12 @@ a {
 }
 
 .background {
-    background-image: url('../assets/background.jpg');
-    background-size: cover;
+    background-color: var(--bg-primary);
+    background-image: 
+        url('../assets/background.jpg'),
+        linear-gradient(rgba(61, 90, 128, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(61, 90, 128, 0.02) 1px, transparent 1px);
+    background-size: cover, 50px 50px, 50px 50px;
     background-position: center;
     background-attachment: fixed;
     height: 100%;

@@ -12,13 +12,7 @@
 
 .timeline-container {
     padding-left: 2rem;
-    border-left: 3px solid #333;
-}
-
-.timeline-entry {
-    position: relative;
-    margin-bottom: 2rem;
-    padding-left: 1.5rem;
+    border-left: 3px solid var(--accent-primary);
 }
 
 .timeline-entry {
@@ -34,43 +28,57 @@
     width: 3rem;
     height: 3rem;
     object-fit: contain;
-    border-radius: 8px;
-    background-color: white;
-    box-shadow: 0 0 0 2px #333;
+    border-radius: 2px;
+    background-color: var(--bg-card);
+    border: 2px solid var(--border-color);
 }
 
 .timeline-content h3 {
     margin: 0;
-    font-size: 1.25rem;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.timeline-content h3::after {
+    display: none;
 }
 
 .timeline-date {
-    font-size: 0.9rem;
-    color: #888;
+    font-family: "Rajdhani", sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--accent-primary);
+    display: block;
+    margin-top: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
 }
 
 .timeline-content p {
     margin-top: 0.5rem;
     line-height: 1.6;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
 }
 
 h1 {
+    font-family: "Barlow Condensed", sans-serif;
     font-size: 2.5rem;
     font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
 }
 
 .company-name {
+    font-family: "IBM Plex Mono", monospace;
     font-weight: normal;
-    color: #a5a5a5;
-    font-size: 1.2rem;
+    color: var(--text-secondary);
+    font-size: 1rem;
     margin-left: 0.5rem;
-}
-
-.timeline-date {
-    font-size: 0.85rem;
-    color: #999;
-    display: block;
-    margin-top: 0.25rem;
+    text-transform: none;
+    letter-spacing: 0;
 }
 
 .skills {
@@ -79,20 +87,21 @@ h1 {
 
 .skill-pill {
     display: inline-block;
-    background-color: #2b2b2b;
-    color: #ffffff;
-    font-size: 0.8rem;
+    background-color: var(--accent-secondary);
+    color: var(--text-primary);
+    font-family: "Rajdhani", sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
     padding: 0.2rem 0.5rem;
-    border-radius: 6px;
+    border-radius: 2px;
     margin-right: 0.5rem;
     margin-top: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 a.company-name:hover {
-    color: #cfcfcf;
-    text-shadow: 
-        0px 0 currentColor,
-        0px 0 currentColor;
+    color: var(--accent-primary);
 }
 
 /* Mobile Styles */

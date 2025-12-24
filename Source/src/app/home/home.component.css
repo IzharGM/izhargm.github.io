@@ -5,9 +5,9 @@
 }
 
 .contact-footer {
-  background: rgba(0, 0, 0, 0.6);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 1.5rem 2rem;
+  background: #0a0f14;
+  border-top: 1px solid var(--border-color);
+  padding: 2rem 2rem;
   margin-top: 4rem;
 }
 
@@ -21,32 +21,44 @@
 }
 
 .footer-text {
-  color: #8f8f8f;
-  font-size: 1rem;
+  font-family: "Barlow Condensed", sans-serif;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
 }
 
 .footer-links {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
   align-items: center;
 }
 
 .footer-links a {
   display: flex;
   align-items: center;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-  opacity: 0.7;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .footer-links a:hover {
-  transform: scale(1.1);
-  opacity: 1;
+  border-color: var(--accent-primary);
+  background-color: rgba(232, 93, 4, 0.1);
 }
 
 .footer-links img {
-  width: 28px;
-  height: 28px;
-  filter: brightness(0) invert(1);
+  width: 18px;
+  height: 18px;
+  filter: invert(60%);
+  transition: filter 0.2s ease;
+}
+
+.footer-links a:hover img {
+  filter: invert(55%) sepia(98%) saturate(1500%) hue-rotate(360deg) brightness(100%);
 }
 
 @media (max-width: 600px) {

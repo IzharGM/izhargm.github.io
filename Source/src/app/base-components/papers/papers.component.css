@@ -11,8 +11,11 @@
 }
 
 h1 {
+    font-family: "Barlow Condensed", sans-serif;
     font-size: 2.5rem;
     font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
 }
 
 li:not(:last-child) { 
@@ -21,15 +24,32 @@ li:not(:last-child) {
 
 .paper-list {
     margin-left: 2rem;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    list-style: none;
+}
+
+.paper-list li {
+    padding: 0.75rem 1rem;
+    background-color: rgba(21, 29, 38, 0.5);
+    border-left: 2px solid var(--accent-secondary);
+    border-radius: 2px;
+    transition: border-color 0.2s ease;
+}
+
+.paper-list li:hover {
+    border-left-color: var(--accent-primary);
 }
 
 .paper-name {
     margin-left: 1rem;
+    color: var(--text-primary);
 }
 
 .date {
-    font-size: 1.1rem;
-    color: #888;
+    font-family: "Rajdhani", sans-serif;
+    font-size: 0.9rem;
+    color: var(--accent-primary);
     margin-left: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
 }
