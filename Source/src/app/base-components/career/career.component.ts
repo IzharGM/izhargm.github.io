@@ -21,7 +21,16 @@ export class CareerComponent implements OnInit {
       description: 'Manages the computer vision and autonomous navigation subteams (6 members) at UCR\'s drone club.',
       skills: ['C++', 'Python'],
       image: 'assets/timeline-images/aviatr.jpg',
-    }
+    },
+    {
+      title: 'Mechanical Engineering Lead',
+      company: 'Aviat\'r',
+      link: 'https://aviatr.ucrhighlanders.org/',
+      date: 'Nov 2024 - Present',
+      description: 'Manages the computer vision and autonomous navigation subteams (6 members) at UCR\'s drone club.',
+      skills: ['C++', 'Python'],
+      image: 'assets/timeline-images/aviatr.jpg',
+    },
   ]
 
 }
