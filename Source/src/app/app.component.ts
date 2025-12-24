@@ -16,7 +16,7 @@ interface anchor {
 })
 
 export class AppComponent {
-  title = 'Evan Goldman';
+  title = 'Izhar Guevara-Moctezuma';
 
   constructor (protected router: Router, private viewportScroller: ViewportScroller) {}
 
@@ -26,8 +26,8 @@ export class AppComponent {
     { name: "career" },
     { name: "papers" },
     { name: "projects" },
-    { name: "coursework" },
-    { name: "gym" }
+    { name: "coursework" }
+    // { name: "gym" }  // Hidden but route still works
   ]
 
   lastScrollTop = 0;
