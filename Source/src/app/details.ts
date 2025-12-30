@@ -18,21 +18,21 @@ export const Projects: CardItem[] = [
     },
     {
         title: "UAV Payload Mechanism",
-        description: "I'm working on utilizing the new VGGT model to implement a new Visual SLAM algorithm that relies solely on visual data. Not even IMU data is used.",
+        description: "Designed and built a hoist mechanism for targeted payload delivery in a UAV competition, featuring a custom gearbox, spring-applied brake, and clutch system for precise and reliable autonomous operation.",
         category: "Mechatronics",
         date: "4/12/2025",
         skills: ["Python", "SLAM"]
     },
     {
         title: "UAV Gimbal Mechanism",
-        description: "I'm working on utilizing the new VGGT model to implement a new Visual SLAM algorithm that relies solely on visual data. Not even IMU data is used.",
+        description: "",
         category: "Mechatronics",
         date: "4/12/2025",
         skills: ["Python", "SLAM"]
     },
     {
         title: "CNC Tube Notcher",
-        description: "I'm working on utilizing the new VGGT model to implement a new Visual SLAM algorithm that relies solely on visual data. Not even IMU data is used.",
+        description: "",
         category: "Mechatronics",
         date: "4/12/2025",
         skills: ["Python", "SLAM"]

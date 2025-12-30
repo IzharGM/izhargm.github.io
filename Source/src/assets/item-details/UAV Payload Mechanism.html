@@ -3,15 +3,92 @@
         <link href="../asset-styles.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <h1 class="header">Template</h1>
-        <p class="subber">Date</p>
+        <h1 class="header">UAV Payload Mechanism</h1>
+        <p class="subber">2026 Student Unmanned Aerial Vehicle (SUAS) Competition</p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/UAV Payload Mechanism/payload_angle.png" style="width: 750px;">
+            <p style="margin-top: 0;"><b>Figure: </b>Isometricview of the payload mechanism.</p>
+        </div>
+
         <h2 class="section">Introduction</h2>
         <p class="content">
-            Description
+            For the 2026 Student Unmanned Aerial Vehicle (SUAS) Competition, one of the UAV's primary objectives
+            is the precise delivery of payloads to designated targets from an altitude of 150 feet. This task is
+            further complicated by the requirement to deploy two distinct payloads, each differing in size and weight.
         </p>
-        <h2 class="section">Details</h2>
         <p class="content">
-            Details
+            The UAV must autonomously navigate to specified target locations and selectively lower either the first
+            or second payload based on the requirements of the drop point. Because the competition rules prohibit
+            landing to reload, both payloads must be preloaded prior to takeoff. As a result, the hoist mechanism
+            must be able to securely store two independent payloads and enable the controlled release of a specific
+            payload while keeping the other safely retained until the aircraft reaches its corresponding drop zone.
+        </p>
+        <p class="content">
+            Based on these requirements, I was tasked with researching, designing, and manufacturing a hoist mechanism
+            that fulfills the needed requirements while still maintaining a light and portable form factor.
+        </p>
+
+        <h2 class="section">Gearbox and Drum</h2>
+        <p class="content">
+            Controlling the descent velocity of the payloads through the use of cables was chosen to retain more
+            precise control over the payloads' spatial position during delivery. A brushless DC motor was used to
+            wind and unwind the cable to lift and lower the payloads.
+        </p>
+        <p class="content">
+            Given that the motor's data sheet stated that its most efficient speed is 11,000 RPM, which was far greater
+            than required for this application, I designed and built an 81:1 gearbox which incorporated helical gears to
+            reduce noise and minimize wear at higher rotational speeds. This brought the output speed down to roughly
+            135 RPM which, when paired with its custom cable drum, resulted in a linear payload velocity of
+            approximately 70 ft/min, allowing each payload to be raised or lowered in just over two minutes.
+        </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/UAV Payload Mechanism/payload_topdown.png" style="width: 750px;">
+            <p style="margin-top: 0;"><b>Figure: </b>Top down view of the payload mechanism.</p>
+        </div>
+
+        <h2 class="section">Spring-Applied Brake</h2>
+        <p class="content">
+            To reduce stress on the motor while holding a payload stationary, I designed and manufactured a
+            spring-applied brake capable of providing 20 N·m of holding torque. This brake reduces the load placed on
+            the motor when it is not rotating and also serves as a safety-critical fail safe. In the event of an electrical
+            or control system failure, the brake mechanically engages to prevent any unintended payload motion.
+        </p>
+        <p class="content">
+            The brake is disengaged by rotating an arm attached to the brake pad. As the arm rotates, it winds a spring
+            and stores energy, pulling the brake pad away from the disc rotor and allowing free motion of the system.
+            To actuate this arm, I initially explored using a variable reluctance stepper motor, since it could apply
+            torque when powered while offering minimal resistance when unpowered. However, a motor that was sufficiently
+            compact, strong, and cost-effective could not be identified.
+        </p>
+        <p class="content">
+            To work around the detent torque of a standard stepper motor when unpowered, I designed a pawl and ratchet
+            freewheel mechanism. This system meshes with a one-way sprocket, allowing torque to be transmitted in a single
+            direction to disengage the brake and hold that position. When power is removed, the stored energy in the wound
+            spring drives the mechanism in the opposite direction, allowing free rotation and automatically re-engaging
+            the brake.
+        </p>
+
+        <h2 class="section">Clutch</h2>
+        <p class="content">
+            To control which payload was deployed while the other remained secured, I designed and manufactured a custom
+            clutch-style mechanism that allows the gearbox to selectively engage or disengage from each payload's individual
+            drum. This approach enabled independent control of each payload using a single motor and gearbox assembly, which
+            reduces system complexity and the number of parts needed.
+        </p>
+
+        <h2 class="section">EE Components</h2>
+        <p class="content">
+            By using an Arduino UNO R4 WIFI, I was able to control the motor's speed, disengagement of the brake, and the
+            clutch's ability to engage and disengage each drum. To reverse the direction of the motor, a motor driver was
+            needed to provide this function, as well as an external 12V power supply to power all the EE components including
+            the microcontroller.
+        </p>
+        <p class="content">
+            To reduce the need for special machinery or tooling and to accelerate the iteration process, most of the parts
+            were 3D printed and incorporated off-the-shelf components such as heat-set inserts, bearings, springs, and other
+            hardware.
         </p>
     </body>
 </html>

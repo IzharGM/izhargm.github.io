@@ -60,6 +60,10 @@ body {
     overflow: hidden;
 }
 
+h2 {
+    color: #c75b12;
+}
+
 @media (max-width: 600px) {
     .container {
         padding-top: 60px;
