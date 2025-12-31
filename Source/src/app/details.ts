@@ -11,7 +11,7 @@ export interface CardItem {
 export const Projects: CardItem[] = [
     {
         title: "UAV Body",
-        description: "I'm research, designing, and manufacturing a custom drone body that will compete in the SUAS 2026 drone competition.",
+        description: "I'm researching, designing, and manufacturing a custom drone body that will compete in the SUAS 2026 drone competition.",
         category: "UAV",
         date: "4/12/2025",
         skills: ["Static Simulation", "SolidWorks", "3D Printing", "Prototyping"]
@@ -25,14 +25,14 @@ export const Projects: CardItem[] = [
     },
     {
         title: "UAV Gimbal Mechanism",
-        description: "",
+        description: "I reverse engineered a UAV gimbal that will be used in the 2026 SUAS competition.",
         category: "Mechatronics",
         date: "4/12/2025",
         skills: ["Python", "SLAM"]
     },
     {
         title: "CNC Tube Notcher",
-        description: "",
+        description: "I reverse engineered a CNC tube notcher with the added bonus of it being much more compact than commercially availible ones.",
         category: "Mechatronics",
         date: "4/12/2025",
         skills: ["Python", "SLAM"]
