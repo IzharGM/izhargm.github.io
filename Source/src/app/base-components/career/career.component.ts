@@ -23,6 +23,15 @@ export class CareerComponent implements OnInit {
       image: 'assets/timeline-images/aviatr.jpg',
     },
     {
+      title: 'CNC Operations Intern',
+      company: 'Sorenson Engineering',
+      link: 'https://www.sorensoneng.com/',
+      date: 'Jun 2026 - Sep 2026',
+      description: 'Researched and designed a custom heat treatment fixturing method to reduce distortion in beryllium-copper contacts.',
+      skills: ['Fixture Design', 'Swiss CNC', 'Heat Treatment', 'Technical Documentation'],
+      image: 'assets/timeline-images/sorenson.jpg',
+    },
+    {
       title: 'Associate Engineer',
       company: 'FSAE Highlander Racing',
       link: 'https://www.highlanderracing.org/index.html',

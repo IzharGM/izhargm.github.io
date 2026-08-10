@@ -16,7 +16,9 @@ export class CourseworkComponent implements OnInit {
     'ME 100A - Thermodynamics',
     'ME 110 - Mechanics of Materials',
     'ME 116A - Heat Transfer',
+    'ME 130 - Kinematics and Dynamics of Mechanical Systems',
     'ME 133 - Mechatronics',
+    'ME 135 - Transport Phenomena',
     'ME 174 - Machine Design',
   ];
 }
