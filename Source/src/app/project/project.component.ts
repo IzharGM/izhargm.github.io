@@ -1,47 +1,97 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, NgZone, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+
+// Give up on the growth poll if the document never fires `load` (bad path, dead asset).
+const POLL_TIMEOUT_MS = 15000;
 
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.css']
 })
-export class ProjectComponent implements OnInit {
+export class ProjectComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     protected router: Router,
     private route: ActivatedRoute,
-    private sanitizer: DomSanitizer,) { }
+    private sanitizer: DomSanitizer,
+    private zone: NgZone,) { }
+
+  @ViewChild('iframe') private iframeRef?: ElementRef<HTMLIFrameElement>
 
   projectName: string | null = null
   projectSrc?: SafeUrl
+
+  private rafId = 0
+  private pollDeadline = 0
+  private lastHeight = 0
+  private resizeObserver?: ResizeObserver
 
   ngOnInit(): void {
     this.projectName = this.route.snapshot.paramMap.get('title')
     this.projectSrc = this.sanitizer.bypassSecurityTrustResourceUrl('assets/item-details/' + this.projectName + '.html')
     window.scroll(0,0)
+  }
 
-    window.addEventListener("message", function (event) {
-      if (event.data.type === "resizeIframe") {
-        const iframe = document.querySelector("iframe");
-        if (iframe) {
-          iframe.style.height = event.data.height + "px";
-        }
-      }
+  ngAfterViewInit(): void {
+    // Follow the document's height while it streams in. Sizing the iframe only on
+    // its `load` event means waiting on every image and embed in the page first,
+    // which leaves the reader staring at a 150px sliver for seconds.
+    this.zone.runOutsideAngular(() => {
+      this.pollDeadline = performance.now() + POLL_TIMEOUT_MS;
+      this.pollHeight();
     });
   }
 
+  ngOnDestroy(): void {
+    this.stopPolling();
+    this.resizeObserver?.disconnect();
+  }
+
   iframeLoad(iframe: HTMLIFrameElement, backBtn: HTMLButtonElement) {
-    if (iframe.contentWindow) {
-      const doc = iframe.contentWindow.document;
-      const height = Math.max(
-        doc.body.scrollHeight,
-        doc.documentElement.scrollHeight
-      );
+    // Everything has landed, so swap the frame-by-frame poll for an observer that
+    // only reacts to genuine reflows (window resize, the video facade expanding).
+    this.stopPolling();
+    this.syncHeight();
+    backBtn.style.opacity = '1';
+
+    const body = iframe.contentDocument?.body;
+    if (body && typeof ResizeObserver !== 'undefined') {
+      this.zone.runOutsideAngular(() => {
+        this.resizeObserver = new ResizeObserver(() => this.syncHeight());
+        this.resizeObserver.observe(body);
+      });
+    }
+  }
+
+  private pollHeight = (): void => {
+    this.syncHeight();
+    if (performance.now() < this.pollDeadline) {
+      this.rafId = requestAnimationFrame(this.pollHeight);
+    }
+  }
+
+  private stopPolling(): void {
+    if (this.rafId) {
+      cancelAnimationFrame(this.rafId);
+      this.rafId = 0;
+    }
+    this.pollDeadline = 0;
+  }
+
+  private syncHeight(): void {
+    const iframe = this.iframeRef?.nativeElement;
+    const doc = iframe?.contentDocument;
+    if (!iframe || !doc?.body) {
+      return;
+    }
+
+    const height = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight);
+    if (height > 0 && height !== this.lastHeight) {
+      this.lastHeight = height;
       iframe.style.height = height + 'px';
     }
-    backBtn.style.opacity = '1';
   }
 
   scrollToSection(id: string) {

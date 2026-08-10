@@ -1,0 +1,200 @@
+<html>
+    <head>
+        <link href="../asset-styles.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <h1 class="header">Aviat'r Drone</h1>
+        <p class="subber">2027 Student Unmanned Aerial Vehicle (SUAS) Competition</p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Aviat'r Drone/real_drone.webp" width="1200" height="900"
+                alt="The assembled drone, built and wired, resting on a workbench" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>The drone as built, with the flight controller, GPS mast, battery, and motors installed.</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Aviat'r Drone/drone_assembly.webp" width="1200" height="543"
+                alt="Isometric CAD view of the full drone assembly" loading="lazy" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>Isometric CAD view of the full drone assembly.</p>
+        </div>
+
+        <h2 class="section">Background</h2>
+        <p class="content">
+            This is an ongoing project aimed to be mission ready for the 2027 Student Unmanned Aerial Vehicle
+            (SUAS) Competition. A primary mission of the UAV is the accurate delivery of payloads to designated
+            targets from an altitude of 150 feet.
+        </p>
+        <p class="content">
+            To ensure proper and efficient execution of this task, the drone must carry several essential
+            components, including a flight controller that processes sensor data to make fine adjustments for
+            stable flight, a 3-axis gimbal that scans the surrounding terrain and provides visual feedback for
+            navigation, a payload mechanism capable of holding and deploying two objects to their designated
+            locations, an onboard computer which serves as the mind of the drone to avoid collisions with other
+            drones and navigate autonomously across the vast terrain, as well as other critical electrical systems.
+        </p>
+        <p class="content">
+            A rigid, lightweight drone that can efficiently package and protect these components from environmental
+            exposure, withstand impact in the event of a crash, and handle the aerodynamic and structural loads
+            experienced in flight is vital to the successful completion of the competition objectives.
+        </p>
+
+        <h2 class="section">Chassis</h2>
+        <p class="content">
+            The drone chassis is arguably the single most critical component of the entire system, and it reflected
+            that importance in the time, research, and testing that went into designing it. The goal was to create a
+            structure that could compactly house all the necessary components, withstand the forces experienced
+            during flight, both with and without payload, and allow for rapid part replacement in the event of a
+            crash or when adapting to a new situation.
+        </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Aviat'r Drone/drone_frame.webp" width="1200" height="601"
+                alt="The bare drone chassis" loading="lazy" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>The bare chassis, showing the three stage centerpiece, dovetailed arms, and landing gear.</p>
+        </div>
+
+        <p class="content">
+            My main method of manufacturing relied heavily on 3D printing, which allowed the initial version of the
+            chassis to have a very modular design. This greatly sped up the iteration process and made it much
+            faster to replace broken pieces and adapt the drone to the situation at hand. For the centerpiece, I
+            settled on a 3 stage system that allowed for easy assembly and disassembly of the drone through 4
+            columns at each corner, held in place with heat set inserts and allen bolts. Once the centerpiece of the
+            chassis was settled, the next step was figuring out the best way to attach the drone arms to it, which
+            meant finding the most structurally sound way to ensure the arm's weakest point, its connection to the
+            center, could withstand the forces it would experience both during flight and in the case of a crash.
+        </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Aviat'r Drone/drone_exploded.webp" width="1078" height="821"
+                alt="Exploded view of the drone chassis" loading="lazy" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>Exploded view of the chassis, highlighting the modular three stage stack and dovetail arm connections.</p>
+        </div>
+
+        <p class="content">
+            I ultimately went with a dovetail style connection between the arms and the center body, since it relied
+            on the material's own strength to keep the arm from moving longitudinally away from the center. Since
+            most of the force and stress occurred in the vertical direction, relying on the material's own strength
+            was enough to handle the longitudinal loads, while allen bolts provided the clamping force needed to
+            keep the arm secured to the center vertically and provide the rigidity needed.
+        </p>
+        <p class="content">
+            Finally, when it came to the design of the drone arm itself, I used a cantilever beam as my foundation
+            and validated it for drone use by performing a static analysis, which allowed me to simulate the arm's
+            behavior and the maximum stress it could expect to see, based on the force applied at one end, the
+            geometry of the arm, and the material's specifications. From there, I used topology optimization to
+            reduce the weight of the arm by 70% while still retaining more than enough strength and rigidity for it
+            to function properly.
+        </p>
+
+        <h2 class="section">Flight Controller, GPS Module, and PDM</h2>
+        <p class="content">
+            For the flight controller, we went with the Holybro Pixhawk 4 mainly because of its reliability and the
+            failsafe behaviors it supports through the PX4 firmware. Once set up correctly, its ability to
+            autonomously hover in place and safely land in the event of signal loss gave me peace of mind that the
+            drone wouldn't just fall out of the sky if something went wrong. The kit we bought also came with
+            HolyBro's own M10 GPS module, which gave the drone spatial awareness for navigation and failsafes, and a
+            power distribution module that handled power delivery and battery monitoring, feeding the Pixhawk the
+            data it needed to trigger safety failsafes like low battery RTL.
+        </p>
+
+        <h2 class="section">Onboard Computer</h2>
+        <p class="content">
+            For the onboard computer, we went with the NVIDIA Jetson Nano mainly because of its ability to run AI
+            models directly on the drone rather than relying on an off board system. Its GPU allowed for real time
+            image processing and computer vision tasks like object detection, which would've been way too demanding
+            for the Pixhawk to handle on its own. It also had solid community support and documentation, which made
+            getting the vision pipeline up and running a lot smoother.
+        </p>
+
+        <h2 class="section">Motors and ESCs</h2>
+        <p class="content">
+            When choosing motors, given the nature of the competition which requires the drone to fly upwards of 8
+            miles and the amount of weight it would need to carry, I knew that efficiency would play a major role in
+            choosing the right motors, only second to them being able to provide enough thrust. Given these
+            requirements, I went with the T-Motor F90 Long Range with a KV rating of 1300. The F90 is built
+            specifically for long range and cinematography applications, which made it a great fit since it deals in
+            the same realm.
+        </p>
+        <p class="content">
+            Having a lower KV means it could spin bigger, more efficient 7-in props at a lower RPM, which means more
+            thrust per watt compared to a higher KV motor of the same size. It also had enough torque due to its
+            larger stator to handle the payload weight without needing to sit near max throttle just to hover, which
+            from my findings is usually where efficiency starts to tank.
+        </p>
+
+        <h2 class="section">Power</h2>
+        <p class="content">
+            Given the F90 KV1300's 5-6S voltage range, I paired it with a 6S 1000mAh 100C Ovonic LiPo with an XT60
+            connector. Since the motor is rated for 5-6S, running it at 6S lets me pull the full voltage range out
+            of it and get the most performance out of the motor without overdriving it.
+        </p>
+        <p class="content">
+            The 100C discharge rate was also important since T-Motor's own bench data shows the F90 KV1300 can pull
+            up close to 53.6A under load, so having a battery capable of dumping 100A continuously meant the battery
+            wouldn't sag under load or bottleneck the power the motors were trying to draw, keeping voltage stable
+            throughout the flight. On top of that, the battery's compact and lightweight design, at around 174g,
+            helped keep the overall weight down, which mattered since every gram not spent on the battery pack was a
+            gram I could put toward payload or extra flight time.
+        </p>
+
+        <h2 class="section">Current Status and Next Steps</h2>
+        <p class="content">
+            At this stage, the drone is mostly operational in manual mode, controlled through a FlySky FS-16
+            transmitter paired with its respective receiver. While the core platform is flying, there are still a
+            few issues that need to be addressed before moving into more advanced testing. During manual flights,
+            the drone will occasionally lose signal, and since the failsafe behaviors like stabilized automatic
+            hover haven't been configured yet, this is something I plan to prioritize soon to ensure the drone can
+            respond safely if signal is lost again.
+        </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <button type="button" class="video-facade" data-video="ZlKP2s8mj7U"
+                data-title="Drone Take off and Crash" aria-label="Play video: Drone Take off and Crash">
+                <img src="../details-images/Aviat'r Drone/flight_video_poster.webp" alt="" width="960" height="540"
+                    loading="lazy" decoding="async">
+                <span class="play"></span>
+            </button>
+            <p style="margin-top: 0;"><b>Video: </b>A manual flight test showing takeoff, sustained flight, and the crash that ended the run.</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Aviat'r Drone/payload_assembly.webp" width="1185" height="845"
+                alt="The payload mechanism's gearbox and clutch assembly" loading="lazy" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>The payload mechanism's gearbox and clutch assembly, currently in development.</p>
+        </div>
+
+        <p class="content">
+            My current focus, however, is on developing the payload mechanism responsible for lifting and lowering
+            the payload during flight. Since this is a highly custom mechanism with no off the shelf solution to
+            fall back on, it's taking a good amount of time and iteration to get right. Once that system is
+            finalized and tested, the next phase will involve integrating the gimbal along with the autonomous
+            hardware needed to give the drone its full autonomous capabilities.
+        </p>
+        <p class="content">
+            Alongside this, I'm also looking to bring down the weight of the drone frame, since it currently sits at
+            around 400g, as well as clean up the cable management throughout the build to improve reliability and
+            make future maintenance and troubleshooting easier.
+        </p>
+
+        <script>
+            // Mount the real YouTube player only once the reader asks for it.
+            document.querySelectorAll('.video-facade').forEach(function (facade) {
+                facade.addEventListener('click', function () {
+                    var frame = document.createElement('iframe');
+                    frame.className = 'video-embed';
+                    frame.src = 'https://www.youtube.com/embed/' + facade.dataset.video + '?autoplay=1';
+                    frame.title = facade.dataset.title;
+                    frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+                    frame.referrerPolicy = 'strict-origin-when-cross-origin';
+                    frame.allowFullscreen = true;
+                    facade.parentNode.replaceChild(frame, facade);
+                });
+            });
+        </script>
+    </body>
+</html>

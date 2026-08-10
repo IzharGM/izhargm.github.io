@@ -13,16 +13,17 @@ export class ProjectsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
+
   showAllProjects = false;
 
-  projects = Projects
+  // Partitioned once at construction rather than in a getter: the app-wide scroll
+  // listener runs change detection on every scroll event, and a getter would rebuild
+  // both arrays each time.
+  readonly relevantProjects = Projects.filter(p => p.relevant !== false);  // defaults to true
 
-  get relevantProjects() {
-    return this.projects.filter(p => p.relevant !== false);  // defaults to true
-  }
+  readonly hiddenProjects = Projects.filter(p => p.relevant === false);  // only explicitly false
 
-  get hiddenProjects() {
-    return this.projects.filter(p => p.relevant === false);  // only explicitly false
+  trackByTitle(_index: number, project: CardItem): string {
+    return project.title;
   }
 }

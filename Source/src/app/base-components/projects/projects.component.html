@@ -2,9 +2,10 @@
   <h1>Projects <span class="title-subtext">(click for more info)</span></h1>
   <div class="project-list">
     <!-- Relevant projects -->
-    <div *ngFor="let project of relevantProjects" class="project-card" [routerLink]="['/project', project.title]">
+    <div *ngFor="let project of relevantProjects; trackBy: trackByTitle" class="project-card" [routerLink]="['/project', project.title]">
       <div class="project-image">
-        <img [src]="'assets/item-images/' + project.title + '.png'" [alt]="project.title" />
+        <img [src]="'assets/item-images/thumbs/' + project.title + '.webp'" [alt]="project.title"
+          [attr.width]="project.thumbWidth" [attr.height]="project.thumbHeight" loading="lazy" decoding="async" />
       </div>
       <div class="project-info">
         <h3>{{ project.title }}</h3>
@@ -25,10 +26,11 @@
 
     <!-- Hidden projects -->
     <ng-container *ngIf="showAllProjects">
-      <div *ngFor="let project of hiddenProjects; let i = index" class="project-card animate"
+      <div *ngFor="let project of hiddenProjects; trackBy: trackByTitle; let i = index" class="project-card animate"
         [routerLink]="['/project', project.title]" [style.animation-delay]="(i * 100) + 'ms'">
         <div class="project-image">
-          <img [src]="'assets/item-images/' + project.title + '.png'" [alt]="project.title" />
+          <img [src]="'assets/item-images/thumbs/' + project.title + '.webp'" [alt]="project.title"
+            [attr.width]="project.thumbWidth" [attr.height]="project.thumbHeight" loading="lazy" decoding="async" />
         </div>
         <div class="project-info">
           <h3>{{ project.title }}</h3>

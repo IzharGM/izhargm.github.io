@@ -43,6 +43,9 @@ iframe {
     border: 1px solid var(--border-color);
     border-radius: 2px;
     width: 800px;
+    /* Holds the frame open until the first height sync lands, so the page never
+       flashes at the browser's default 150px iframe height. */
+    min-height: 70vh;
     display: flex;
     margin: auto;
 }
