@@ -64,6 +64,70 @@ h2 {
     color: #c75b12;
 }
 
+/* Click-to-load stand-in for a YouTube embed. The real player pulls roughly a
+   megabyte of third-party script before it settles, which held up the whole
+   detail page when it was mounted on load. */
+.video-facade {
+    position: relative;
+    display: block;
+    width: 750px;
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
+    margin: 10px auto;
+    padding: 0;
+    border: 0;
+    border-radius: 2px;
+    overflow: hidden;
+    background-color: #000000;
+    cursor: pointer;
+}
+
+.video-facade img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    /* Poster is stored at the player's own 16:9 framing, so this never crops. */
+    object-fit: cover;
+}
+
+.video-facade .play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 68px;
+    height: 48px;
+    transform: translate(-50%, -50%);
+    border-radius: 12px;
+    background-color: rgba(0, 0, 0, 0.65);
+    transition: background-color 0.2s ease;
+}
+
+.video-facade .play::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-42%, -50%);
+    border-style: solid;
+    border-width: 11px 0 11px 19px;
+    border-color: transparent transparent transparent #ffffff;
+}
+
+.video-facade:hover .play,
+.video-facade:focus .play {
+    background-color: #c75b12;
+}
+
+.video-embed {
+    display: block;
+    width: 750px;
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
+    margin: 10px auto;
+    border: 0;
+}
+
 @media (max-width: 600px) {
     .container {
         padding-top: 60px;
