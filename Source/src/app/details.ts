@@ -6,6 +6,9 @@ export interface CardItem {
     skills?: string[],
     highlighted?: boolean,
     relevant?: boolean,
+    // Overrides the default `item-images/thumbs/<title>.webp` lookup, for
+    // projects standing in on a placeholder until real artwork exists.
+    thumb?: string,
     // Intrinsic size of the card thumbnail. Optional, but supplying it lets the
     // browser reserve the right box before the image arrives instead of reflowing.
     thumbWidth?: number,
@@ -33,7 +36,7 @@ export const Projects: CardItem[] = [
     },
     {
         title: "UAV Gimbal Mechanism",
-        description: "I reverse engineered a UAV gimbal that will be used in the 2026 SUAS competition.",
+        description: "I reverse engineered a UAV gimbal that will be used in the 2027 SUAS competition.",
         category: "Mechatronics",
         date: "4/12/2025",
         skills: ["SolidWorks", "Reverse Engineering", "Gimbal Stabilization", "System Integration"],
@@ -48,5 +51,14 @@ export const Projects: CardItem[] = [
         skills: ["SolidWorks", "Reverse Engineering", "CNC / G-code", "Motion Control", "Plasma Cutting"],
         thumbWidth: 400,
         thumbHeight: 309
+    },
+    {
+        title: "BeCu Heat-Treat Distortion Control",
+        description: "In progress...",
+        category: "Materials",
+        date: "8/11/2026",
+        thumb: "assets/timeline-images/sorenson.jpg",
+        thumbWidth: 200,
+        thumbHeight: 200
     }
 ]
