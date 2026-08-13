@@ -53,6 +53,15 @@ export const Projects: CardItem[] = [
         thumbHeight: 246
     },
     {
+        title: "Simulation and Analysis of Mechanisms",
+        description: "Built a MATLAB solver that takes a linkage and a prescribed input motion and returns the position, velocity, and acceleration of every link, using loop closure and Newton-Raphson across a four-bar, an offset slider-crank, and a six-bar multi-loop mechanism.",
+        category: "Kinematics",
+        date: "8/13/2026",
+        skills: ["MATLAB", "Newton-Raphson", "Kinematic Analysis", "Vector Loop Method", "Jacobian Formulation", "Simulation & Animation"],
+        thumbWidth: 400,
+        thumbHeight: 303
+    },
+    {
         title: "UAV Gimbal Mechanism",
         description: "I reverse engineered a UAV gimbal that will be used in the 2027 SUAS competition.",
         category: "Mechatronics",
