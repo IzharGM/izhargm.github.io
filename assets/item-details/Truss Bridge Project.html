@@ -1,0 +1,194 @@
+<html>
+    <head>
+        <link href="../asset-styles.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <h1 class="header">Truss Bridge Project</h1>
+        <p class="subber">ME 174 &mdash; Group 11, June 2025</p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Truss Bridge Project/bridge_finished.webp" width="1400" height="863"
+                alt="The finished straw truss bridge next to the 3D printed fixture it was built on" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>The finished bridge, with the printed fixture it was assembled on sitting in front of it.</p>
+        </div>
+
+        <h2 class="section">Introduction</h2>
+        <p class="content">
+            This was a class project in ME 174, done as a five person group. The assignment was a competition
+            bridge: build a truss out of polypropylene drinking straws, load it at midspan, and be judged on how
+            much load the structure carries relative to how much it weighs. That ratio is the whole game, so every
+            gram of material has to be earning its place.
+        </p>
+        <p class="content">
+            The metric we designed against was structural efficiency, the mass equivalent of the load the bridge
+            carries divided by the mass of the bridge itself. Working from a typical bridge weight of 24 grams, we
+            set a target of 245.5 and a load range of roughly 12 to 20 pounds.
+        </p>
+
+        <h2 class="section">Member Forces</h2>
+        <p class="content">
+            The first pass was the method of joints, run by hand on the side view. The design is symmetric, so
+            solving half of it describes the whole structure. At a 13 pound load the distribution comes out very
+            lopsided: the members directly above the load carry the bulk of it, up to 31.75 pounds in the worst
+            member, while one vertical sits at zero.
+        </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Truss Bridge Project/member_forces.webp" width="1943" height="1170"
+                alt="Diagram of the truss with the force in each member labeled" loading="lazy" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>Member forces from the method of joints at a 13 pound load, on half the symmetric side view.</p>
+        </div>
+
+        <p class="content">
+            That result set the priorities for everything after it. A zero force member is a candidate for removal
+            or for being repurposed as bracing, and the heavily loaded top members are where the design either
+            survives or does not.
+        </p>
+
+        <h2 class="section">Buckling Calculation</h2>
+        <p class="content">
+            Straws in compression do not fail by crushing, they fail by buckling, so the governing check was
+            slenderness. Comparing the slenderness ratio of the members against the transition value for the
+            material put the design in the Euler regime rather than the Johnson regime, which set which critical
+            load formula applies.
+        </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Truss Bridge Project/euler_calcs.webp" width="1415" height="724"
+                alt="Hand calculations for the slenderness ratio and Euler critical load" loading="lazy" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>Slenderness check and the Euler critical load, giving 5892.5 grams, about 13 pounds.</p>
+        </div>
+
+        <p class="content">
+            Running the Euler critical load gave 5892.5 grams, roughly 13 pounds. We treated that as a bound rather
+            than a prediction. Hand calculation on a structure with this many joints leaves room for arithmetic
+            error, so the number was there to sanity check the scale of the answer while SolidWorks did the
+            comparison work.
+        </p>
+
+        <h2 class="section">Layout Study</h2>
+        <p class="content">
+            The most useful part of the project was the sweep. The side truss geometry was settled early, but the
+            members connecting the two side trusses were not, and where those sit changes the entire failure
+            picture. I built variants that moved those members to different locations along the span and changed
+            their orientation, then ran every variant through a buckling study at the same 12 lbf load so the
+            results could be compared directly against each other.
+        </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Truss Bridge Project/variant_low.webp" width="1400" height="1146"
+                alt="Buckling study of an early variant with a load factor of 0.219" loading="lazy" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>An early arrangement, buckling at a load factor of 0.219.</p>
+        </div>
+
+        <p class="content">
+            Looking at the same variant from above makes the problem obvious. The two side trusses are splaying
+            away from each other at midspan and pinching back in, which is the connecting members failing to tie
+            the two sides together where the load goes in. The bridge is not failing as one structure, it is
+            failing as two panels that happen to be near each other.
+        </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Truss Bridge Project/variant_low_top.webp" width="1400" height="885"
+                alt="Top view of the buckling mode showing the two side trusses splaying apart" loading="lazy" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>Top view of the same mode, showing the two sides spreading apart at midspan.</p>
+        </div>
+
+        <p class="content">
+            Moving the connecting members and reorienting them pushed the load factor up to 0.373, and the mode
+            shape changed character. Instead of the whole midspan opening up, the deformation concentrated in the
+            top chord directly above the load, which is where the method of joints said the highest forces were.
+            Getting the failure back into the member that is genuinely the most loaded meant the bracing was
+            finally doing its job.
+        </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Truss Bridge Project/buckling_mode.webp" width="1146" height="920"
+                alt="Buckling mode of a mid range variant with a load factor of 0.373" loading="lazy" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>A better arrangement at a load factor of 0.373, with the failure moved into the top chord.</p>
+        </div>
+
+        <p class="content">
+            The best combination reached a load factor of 0.622, close to three times the worst arrangement for no
+            change in material. All of the variants weighed about the same, so the entire gain came from where the
+            connecting members went and how they were oriented, not from adding straws.
+        </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Truss Bridge Project/variant_best.webp" width="1400" height="1213"
+                alt="Buckling study of the chosen layout with a load factor of 0.622" loading="lazy" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>The layout we built, at a load factor of 0.622.</p>
+        </div>
+
+        <p class="content">
+            I was using the model comparatively rather than as an absolute prediction. The load factors are
+            conservative against what the bridge actually did on the test rig, but the ranking between layouts is
+            what the decision needed, and the ranking is the part a model like this gets right.
+        </p>
+
+        <h2 class="section">Failure Prediction</h2>
+        <p class="content">
+            With the layout settled, a static study at 20 lbf was used to pin down where the bridge would let go
+            and how much it would move getting there. Peak resultant displacement came out at 14.3 mm, and the
+            highest combined axial and bending stress landed on the top chord directly above the load.
+        </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Truss Bridge Project/static_displacement.webp" width="1400" height="963"
+                alt="Static displacement plot of the bridge at 20 lbf" loading="lazy" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>Static displacement at 20 lbf, peaking at 14.3 mm under the load point.</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Truss Bridge Project/static_stress.webp" width="1085" height="658"
+                alt="Static study showing upper bound axial and bending stress in the truss" loading="lazy" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>Axial and bending stress, concentrated in the top four members above the load.</p>
+        </div>
+
+        <p class="content">
+            The static study, the buckling study, and the hand calculation all pointed at the same failure site,
+            the top four members directly above the load. Three methods agreeing is about as much confidence as a
+            project at this scale allows.
+        </p>
+
+        <h2 class="section">Build</h2>
+        <p class="content">
+            Building a truss out of straws by eye does not work. The joints have to land in the right place or the
+            geometry that all of the analysis assumed is not the geometry that gets built, so I designed a 3D
+            printed fixture in the shape of the side truss with the member paths recessed into it. The straws drop
+            into those pockets, get held down while the joints set, and every side panel comes out identical.
+        </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Truss Bridge Project/fixture.webp" width="1400" height="513"
+                alt="Straws laid into the 3D printed truss fixture and clipped in place" loading="lazy" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>A side panel being laid up in the printed fixture, clipped down while the joints set.</p>
+        </div>
+
+        <p class="content">
+            The fixture went through its own revisions alongside the bridge. The version shown here holds the
+            members down at every node, which was the fix for panels coming out of the earlier fixture with the
+            chord lifting away from the profile.
+        </p>
+
+        <h2 class="section">Result</h2>
+        <p class="content">
+            The bridge that came out of it weighed 21 grams and held 19 pounds. By the same efficiency measure we
+            set the target with, that is a ratio of roughly 410, against a goal of 245.5.
+        </p>
+        <p class="content">
+            Almost none of that came from adding material. The variants were within a gram of each other, so the
+            result was bought with member placement and orientation, which cost nothing.
+        </p>
+    </body>
+</html>
