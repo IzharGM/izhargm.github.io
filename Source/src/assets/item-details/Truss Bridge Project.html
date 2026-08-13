@@ -4,7 +4,7 @@
     </head>
     <body>
         <h1 class="header">Truss Bridge Project</h1>
-        <p class="subber">ME 174 &mdash; Group 11, June 2025</p>
+        <p class="subber">Maximizing load carried per gram of structure</p>
 
         <div style="display: flex; flex-direction: column; align-items: center;">
             <img src="../details-images/Truss Bridge Project/bridge_finished.webp" width="1400" height="863"
@@ -15,15 +15,21 @@
 
         <h2 class="section">Introduction</h2>
         <p class="content">
-            This was a class project in ME 174, done as a five person group. The assignment was a competition
-            bridge: build a truss out of polypropylene drinking straws, load it at midspan, and be judged on how
-            much load the structure carries relative to how much it weighs. That ratio is the whole game, so every
-            gram of material has to be earning its place.
+            The objective was a truss bridge built entirely from polypropylene drinking straws, supported at both
+            ends, loaded at midspan, and scored on how much load it carries relative to how much it weighs. Nothing
+            about the structure is judged in isolation, only that ratio, so every gram of material has to be
+            earning its place and any member that is not carrying load is actively costing points.
         </p>
         <p class="content">
-            The metric we designed against was structural efficiency, the mass equivalent of the load the bridge
-            carries divided by the mass of the bridge itself. Working from a typical bridge weight of 24 grams, we
-            set a target of 245.5 and a load range of roughly 12 to 20 pounds.
+            The figure of merit was structural efficiency, the mass equivalent of the load the bridge carries
+            divided by the mass of the bridge itself. Working from a typical bridge weight of 24 grams, we set a
+            target of 245.5 and a load range of roughly 12 to 20 pounds.
+        </p>
+        <p class="content">
+            The approach was to work the problem in three passes that each check the one before it. Hand
+            calculations to find where the load actually goes and what the members can take, simulation to compare
+            arrangements that hand calculation cannot separate, and a purpose built fixture so that the structure
+            that gets glued together is the one that was analyzed.
         </p>
 
         <h2 class="section">Member Forces</h2>
@@ -71,7 +77,7 @@
 
         <h2 class="section">Layout Study</h2>
         <p class="content">
-            The most useful part of the project was the sweep. The side truss geometry was settled early, but the
+            This was where the real gains were. The side truss geometry was settled early, but the
             members connecting the two side trusses were not, and where those sit changes the entire failure
             picture. I built variants that moved those members to different locations along the span and changed
             their orientation, then ran every variant through a buckling study at the same 12 lbf load so the
@@ -156,8 +162,8 @@
 
         <p class="content">
             The static study, the buckling study, and the hand calculation all pointed at the same failure site,
-            the top four members directly above the load. Three methods agreeing is about as much confidence as a
-            project at this scale allows.
+            the top four members directly above the load. Three independent methods converging on the same answer
+            was the point at which the design was worth committing material to.
         </p>
 
         <h2 class="section">Build</h2>
