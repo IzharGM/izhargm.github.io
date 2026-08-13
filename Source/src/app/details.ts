@@ -41,7 +41,7 @@ export const Projects: CardItem[] = [
         date: "8/13/2026",
         skills: ["SolidWorks", "Statics / FBD Analysis", "Static Simulation", "Welding", "Steel Tube Fabrication", "Design for Cost"],
         thumbWidth: 400,
-        thumbHeight: 280
+        thumbHeight: 367
     },
     {
         title: "UAV Gimbal Mechanism",
