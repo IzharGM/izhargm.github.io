@@ -44,6 +44,15 @@ export const Projects: CardItem[] = [
         thumbHeight: 367
     },
     {
+        title: "Truss Bridge Project",
+        description: "Designed a competition straw truss bridge for ME 174, sweeping connecting member placement and orientation through static and buckling studies to land on a 21 gram bridge that held 19 pounds.",
+        category: "Structures",
+        date: "8/13/2026",
+        skills: ["SolidWorks", "Static Simulation", "Buckling Analysis", "Method of Joints", "Euler Buckling", "3D Printing", "Fixture Design"],
+        thumbWidth: 400,
+        thumbHeight: 246
+    },
+    {
         title: "UAV Gimbal Mechanism",
         description: "I reverse engineered a UAV gimbal that will be used in the 2027 SUAS competition.",
         category: "Mechatronics",
