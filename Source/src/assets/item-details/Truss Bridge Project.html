@@ -196,5 +196,36 @@
             Almost none of that came from adding material. The variants were within a gram of each other, so the
             result was bought with member placement and orientation, which cost nothing.
         </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <!-- Shot vertically, so this one overrides the stylesheet's 16:9 facade sizing. -->
+            <button type="button" class="video-facade" data-video="BP2Sng1JrTQ"
+                data-title="Truss bridge load test" aria-label="Play video: Truss bridge load test"
+                style="width: 380px; aspect-ratio: 9 / 16;">
+                <img src="../details-images/Truss Bridge Project/load_test_poster.webp" alt="" width="720" height="1280"
+                    loading="lazy" decoding="async">
+                <span class="play"></span>
+            </button>
+            <p style="margin-top: 0;"><b>Video: </b>The load test, with the bridge pulled down against the frame until it failed.</p>
+        </div>
+
+        <script>
+            // Mount the real YouTube player only once the reader asks for it.
+            document.querySelectorAll('.video-facade').forEach(function (facade) {
+                facade.addEventListener('click', function () {
+                    var frame = document.createElement('iframe');
+                    frame.className = 'video-embed';
+                    // Match the facade's portrait framing rather than the 16:9 default.
+                    frame.style.width = '380px';
+                    frame.style.aspectRatio = '9 / 16';
+                    frame.src = 'https://www.youtube.com/embed/' + facade.dataset.video + '?autoplay=1';
+                    frame.title = facade.dataset.title;
+                    frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+                    frame.referrerPolicy = 'strict-origin-when-cross-origin';
+                    frame.allowFullscreen = true;
+                    facade.parentNode.replaceChild(frame, facade);
+                });
+            });
+        </script>
     </body>
 </html>
