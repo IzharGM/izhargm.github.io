@@ -35,6 +35,15 @@ export const Projects: CardItem[] = [
         thumbHeight: 285
     },
     {
+        title: "FSAE Stands",
+        description: "Designed and built a set of adjustable steel stands that lift our Formula SAE car for accumulator installs, sized around a hand-calculated tipping analysis and validated in SolidWorks for about $110 a set.",
+        category: "Mechanical Design",
+        date: "8/13/2026",
+        skills: ["SolidWorks", "Statics / FBD Analysis", "Static Simulation", "Welding", "Steel Tube Fabrication", "Design for Cost"],
+        thumbWidth: 400,
+        thumbHeight: 280
+    },
+    {
         title: "UAV Gimbal Mechanism",
         description: "I reverse engineered a UAV gimbal that will be used in the 2027 SUAS competition.",
         category: "Mechatronics",
