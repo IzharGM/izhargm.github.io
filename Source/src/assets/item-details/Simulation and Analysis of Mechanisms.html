@@ -16,9 +16,15 @@
         <h2 class="section">Objective</h2>
         <p class="content">
             The goal was to build a solver that takes a linkage, a set of link lengths, and a prescribed input
-            motion, and returns the full motion of every other link over time. Position, velocity, and
-            acceleration, solved numerically rather than graphically, and animated so the result can be checked by
-            eye instead of only on a plot.
+            motion, and returns the full motion of every other link. Not just where the links sit, but how fast
+            each one is turning and how hard it is accelerating, solved at every step of a complete revolution of
+            the input crank rather than at a handful of chosen positions.
+        </p>
+        <p class="content">
+            That is the part that separates this from a position study. Driving the main link through a full
+            rotation produces the angular velocity and angular acceleration of every other link across the entire
+            cycle, so the peaks are found rather than guessed at. Everything is solved numerically rather than
+            graphically, and animated on top of that so the result can be checked by eye instead of only on a plot.
         </p>
         <p class="content">
             I ran it against three mechanisms of increasing difficulty: a four-bar linkage, an offset slider-crank,
@@ -175,6 +181,13 @@
             <p style="margin-top: 0;"><b>Figure: </b>Slider position with and without the offset, showing the asymmetry it introduces.</p>
         </div>
 
+        <p class="content">
+            The same run also produces the angular velocity and angular acceleration of every link at every one of
+            those steps, not only the angles. Because the input crank is swept through a complete revolution, the
+            velocity and acceleration curves cover the whole cycle, so where each link reaches its fastest and
+            where it sees its highest acceleration both fall straight out of the results instead of having to be
+            looked for.
+        </p>
         <p class="content">
             On the six-bar, all four unknown angles resolve smoothly across the full revolution and the mechanism
             returns to its starting configuration after 360 degrees of input. That closure is the useful check:

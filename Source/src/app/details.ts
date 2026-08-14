@@ -45,7 +45,7 @@ export const Projects: CardItem[] = [
     },
     {
         title: "Truss Bridge Project",
-        description: "Designed a straw truss bridge for maximum load carried per gram, sweeping connecting member placement and orientation through static and buckling studies to land on a 21 gram bridge that held 19 pounds.",
+        description: "Designed a straw truss bridge for maximum load carried per gram, sweeping connecting member placement and orientation through static and buckling studies to land on a 20 gram bridge that held 19 pounds.",
         category: "Structures",
         date: "8/13/2026",
         skills: ["SolidWorks", "Static Simulation", "Buckling Analysis", "Method of Joints", "Euler Buckling", "3D Printing", "Fixture Design"],
@@ -59,7 +59,7 @@ export const Projects: CardItem[] = [
         date: "8/13/2026",
         skills: ["MATLAB", "Newton-Raphson", "Kinematic Analysis", "Vector Loop Method", "Jacobian Formulation", "Simulation & Animation"],
         thumbWidth: 400,
-        thumbHeight: 303
+        thumbHeight: 238
     },
     {
         title: "UAV Gimbal Mechanism",
