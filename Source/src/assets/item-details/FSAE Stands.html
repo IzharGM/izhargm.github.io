@@ -1,0 +1,231 @@
+<html>
+    <head>
+        <link href="../asset-styles.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <h1 class="header">FSAE Stands</h1>
+        <p class="subber">FSAE Highlander Racing &mdash; adjustable car stands</p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/FSAE Stands/car_on_red_stands.webp" width="1400" height="1442"
+                alt="The Formula SAE car raised on the finished red car stands in the team shop" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>The finished stands in service, holding the car at working height.</p>
+        </div>
+
+        <h2 class="section">Problem</h2>
+        <p class="content">
+            The accumulator on our Formula SAE car installs from underneath, which means the car has to be lifted
+            before that job can even start. With the car sitting on the ground there is almost no clearance to work
+            with, so every install turned into a session of lying under the frame and working overhead. It was
+            uncomfortable, slow, and the kind of setup where a slip puts someone underneath a 450 pound car.
+        </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/FSAE Stands/car_ground.webp" width="941" height="589"
+                alt="CAD view of the car frame with the accumulator installed underneath" loading="lazy" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>The frame with the accumulator mounted underneath, the component that drove the whole project.</p>
+        </div>
+
+        <h2 class="section">Solution</h2>
+        <p class="content">
+            Working alongside a teammate, I designed a set of four welded steel stands that hold the car at a
+            workable height while leaving the entire underside open. Height is set by a pinned inner tube, so the
+            same stand covers everything from a low working height up to full accumulator clearance.
+        </p>
+        <p class="content">
+            We deliberately left jacks and leverage systems out of the design. The car gets lifted by hand, which
+            keeps the part count and the cost down, and it means there is no hydraulic system to maintain or fail
+            while someone is underneath. The tradeoff is that lifting has to be done as a team and done properly,
+            since the load is entirely on the people doing the lift.
+        </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/FSAE Stands/car_on_stands.webp" width="757" height="773"
+                alt="Isometric CAD view of the car frame resting on four stands" loading="lazy" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>The frame supported on all four stands.</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/FSAE Stands/accumulator_clearance.webp" width="1055" height="789"
+                alt="Side view of the car on stands showing clearance under the accumulator" loading="lazy" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>Side view showing the clearance left underneath for installing and removing the accumulator.</p>
+        </div>
+
+        <h2 class="section">Tipping Analysis</h2>
+        <p class="content">
+            The failure mode that actually matters here is not the stand breaking, it is the stand tipping. Someone
+            leaning on the car or pushing a stuck component sideways applies a horizontal load high above a narrow
+            base, and that is what puts the car on the floor. So the analysis was built around one question: how much
+            sideways force does it take to tip a loaded stand?
+        </p>
+        <p class="content">
+            The car was taken as 450 lb over an 84 inch span with its center of mass at (62, 7.75, 6.42) inches from
+            the reference corner of the frame, each stand at 30 lb, a working height of 36 inches, and a base half
+            width of 17 inches.
+        </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/FSAE Stands/tipping_fbd.webp" width="967" height="469"
+                alt="Free body diagram of the car resting on two stands" loading="lazy" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>Free body diagram used for the tipping calculations.</p>
+        </div>
+
+        <p class="content">
+            The work was done in two steps. First I solved for the vertical reaction at each stand, since the car's
+            center of mass sits off center and the two ends do not carry equal load. Then I isolated a single stand
+            with its own reaction applied and summed moments about the downwind foot to find the horizontal force
+            <i>P</i> that puts the stand on the edge of tipping. Running it that way rather than treating the whole
+            setup as one body matters, because the stand carrying the smallest reaction is the one that tips first,
+            and that is the number the design has to be sized against.
+        </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/FSAE Stands/statics_work.webp" width="986" height="790"
+                alt="Handwritten statics work for the reaction forces and tipping load" loading="lazy" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>Reaction forces at each stand, then the tipping load solved about the foot.</p>
+        </div>
+
+        <h2 class="section">Stand Placement</h2>
+        <p class="content">
+            Stand spacing falls straight out of that first step. Spacing the stands wide pushes more of the car's
+            weight onto the far stand and leaves the near one lightly loaded and easy to tip. Pulling them in toward
+            the center of mass evens the reactions out and raises the tipping load on the worst stand, but pull them
+            in too far and the car starts to overhang.
+        </p>
+        <p class="content">
+            The placement I settled on puts the stands 21 inches to either side of the car's center of mass, set an
+            inch in from the end of the frame. That balances the reactions without giving up the overhang margin.
+        </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/FSAE Stands/stand_spacing.webp" width="945" height="600"
+                alt="Diagram showing the chosen stand positions relative to the car center of mass" loading="lazy" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>Stand placement, 21 inches either side of the center of mass.</p>
+        </div>
+
+        <h2 class="section">Sizing the Base</h2>
+        <p class="content">
+            With the method in place I ran it backwards, picking a target tipping load and asking what the stand
+            would have to look like to survive it. Every target can be met three different ways: ballast the stand,
+            widen its base, or cap how high the car is allowed to go.
+        </p>
+        <ul>
+            <li>100 lbf: add 100 lb of ballast, or a 34 inch base, or cap the working height at 30 inches.</li>
+            <li>150 lbf: add 285 lb of ballast, or a 52 inch base, or cap the working height at 20 inches.</li>
+            <li>200 lbf: add 460 lb of ballast, or a 68 inch base, or cap the working height at 15 inches.</li>
+        </ul>
+        <p class="content">
+            Ballast was out, since the whole point is a stand one person can carry. Capping the height defeats the
+            purpose of the project. That left base width, and 100 lbf at a 34 inch base was the combination that
+            stayed portable, so the base grew from 24 inches to 34 inches.
+        </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/FSAE Stands/design_envelope.webp" width="986" height="386"
+                alt="Notes listing the ballast, base width, and height options for each tipping load" loading="lazy" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>The three ways to hit each tipping target, and the clamped down case at the right.</p>
+        </div>
+
+        <p class="content">
+            Clamping the car down to the stands was checked as a separate case. Tying the car and stand together
+            lets the car's weight resist the tipping moment instead of riding on top of it, and at the original 24
+            inch base that came out to 70.6 lbf at a 42.62 inch push height.
+        </p>
+
+        <h2 class="section">Modifications</h2>
+        <p class="content">
+            The widened base was the main change, and the feet were the other one. The first design bolted the feet
+            to the floor, which fixed the tipping problem by removing the stand's ability to move at all, but it also
+            meant the stands could only live in one place. I swapped that for rubber sheets bonded to the feet, which
+            gives enough grip to keep the stand from sliding while leaving the set portable.
+        </p>
+
+        <div style="display: flex; justify-content: center; flex-wrap: wrap; align-items: flex-start;">
+            <div style="display: flex; flex-direction: column; align-items: center; max-width: 46%;">
+                <img src="../details-images/FSAE Stands/stands_original.webp" width="683" height="702"
+                    alt="CAD view of the original stand with the narrower base" loading="lazy" decoding="async"
+                    style="width: 340px; max-width: 100%; height: auto;">
+                <p style="margin-top: 0;"><b>Figure: </b>Original stand, 24 inch base.</p>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; max-width: 46%;">
+                <img src="../details-images/FSAE Stands/stands_render.webp" width="668" height="467"
+                    alt="CAD view of the revised stand with the widened base" loading="lazy" decoding="async"
+                    style="width: 340px; max-width: 100%; height: auto;">
+                <p style="margin-top: 0;"><b>Figure: </b>Revised stand, 34 inch base.</p>
+            </div>
+        </div>
+
+        <h2 class="section">Build</h2>
+        <p class="content">
+            The stands were cut and welded from steel tube, four of them, and left in raw finish long enough to
+            check the fit and the height range before paint. The row of holes up each inner tube is the height
+            adjustment, and the pins that carry the car drop straight through those. Once everything checked out
+            they were painted red, which is how they sit in the shop today.
+        </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/FSAE Stands/stands_as_built.webp" width="1400" height="1218"
+                alt="Two finished car stands in raw steel finish before paint" loading="lazy" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>Two of the stands welded up in raw finish, showing the pinned height adjustment and the widened base.</p>
+        </div>
+
+        <h2 class="section">Validation</h2>
+        <p class="content">
+            I checked the statics against SolidWorks before committing to the geometry. Probing the reaction at a
+            stand foot in the assembly returned 127 lbf, which lined up with the hand calculations and gave me
+            confidence that the free body diagram matched what the model was actually doing.
+        </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/FSAE Stands/reaction_probe.webp" width="1243" height="629"
+                alt="SolidWorks probe showing the reaction force at a stand foot" loading="lazy" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>Reaction force probed at the foot of a loaded stand.</p>
+        </div>
+
+        <p class="content">
+            The height adjustment pins were the other thing worth checking, since they carry the whole car through a
+            half inch of steel. I ran a static study on the pin joint with 600 lbf spread across four pins, 150 lbf
+            each, fixing the bottom of the 1.75 by 1.75 by 0.083 outer tube. In 4130 steel, which is good for about
+            97.2 ksi ultimate normal and 62 ksi ultimate shear, the pin saw 562 psi normal and 802 psi shear. That
+            works out to a factor of safety of 173 in normal stress and 77 in shear.
+        </p>
+        <p class="content">
+            Those numbers are enormous, and that is the point. The pins are nowhere near being the limiting part of
+            this design, which confirmed that tipping, not pin strength, is what the stand should be designed
+            around.
+        </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/FSAE Stands/pin_stress.webp" width="1575" height="907"
+                alt="SolidWorks static study showing normal stress in the adjustment pin" loading="lazy" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>Static study of the adjustment pin, showing a peak normal stress of 562 psi.</p>
+        </div>
+
+        <h2 class="section">Cost</h2>
+        <p class="content">
+            The early concept was priced against the sawhorses you can buy at a hardware store, and at roughly 40
+            feet of tubing it came in around $150. It was more expensive than an off the shelf sawhorse, but store
+            bought stands do not adjust and do not give the height range the accumulator install needs.
+        </p>
+        <p class="content">
+            The final build came in lower. The legs take 34 feet of 1.5 by 1.5 by 0.083 tube plus 2 feet of 1.75 by
+            1.75 by 0.083 for the sliding section at $84.46, the side stoppers add $10.02, and the pins are $10 for a
+            pair, with rubber sheet for the grips on top of that. Total build cost is about $110.
+        </p>
+        <p class="content">
+            The stands were also drawn with later use in mind. Nothing about the design is specific to this car, and
+            there is room to add a leveling system if a future project needs one.
+        </p>
+    </body>
+</html>

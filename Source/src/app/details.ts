@@ -35,6 +35,33 @@ export const Projects: CardItem[] = [
         thumbHeight: 285
     },
     {
+        title: "FSAE Stands",
+        description: "Designed and built a set of adjustable steel stands that lift our Formula SAE car for accumulator installs, sized around a hand-calculated tipping analysis and validated in SolidWorks for about $110 a set.",
+        category: "Mechanical Design",
+        date: "8/13/2026",
+        skills: ["SolidWorks", "Statics / FBD Analysis", "Static Simulation", "Welding", "Steel Tube Fabrication", "Design for Cost"],
+        thumbWidth: 400,
+        thumbHeight: 367
+    },
+    {
+        title: "Truss Bridge Project",
+        description: "Designed a straw truss bridge for maximum load carried per gram, sweeping connecting member placement and orientation through static and buckling studies to land on a 20 gram bridge that held 19 pounds.",
+        category: "Structures",
+        date: "8/13/2026",
+        skills: ["SolidWorks", "Static Simulation", "Buckling Analysis", "Method of Joints", "Euler Buckling", "3D Printing", "Fixture Design"],
+        thumbWidth: 400,
+        thumbHeight: 246
+    },
+    {
+        title: "Simulation and Analysis of Mechanisms",
+        description: "Built a MATLAB solver that takes a linkage and a prescribed input motion and returns the position, velocity, and acceleration of every link, using loop closure and Newton-Raphson across a four-bar, an offset slider-crank, and a six-bar multi-loop mechanism.",
+        category: "Kinematics",
+        date: "8/13/2026",
+        skills: ["MATLAB", "Newton-Raphson", "Kinematic Analysis", "Vector Loop Method", "Jacobian Formulation", "Simulation & Animation"],
+        thumbWidth: 400,
+        thumbHeight: 238
+    },
+    {
         title: "UAV Gimbal Mechanism",
         description: "I reverse engineered a UAV gimbal that will be used in the 2027 SUAS competition.",
         category: "Mechatronics",
