@@ -10,14 +10,14 @@
             <img src="../details-images/FSAE Stands/car_on_red_stands.webp" width="1400" height="1442"
                 alt="The Formula SAE car raised on the finished red car stands in the team shop" decoding="async"
                 style="width: 750px; max-width: 100%; height: auto;">
-            <p style="margin-top: 0;"><b>Figure: </b>The finished stands in service, holding the car at a max working height of 3ft.</p>
+            <p style="margin-top: 0;"><b>Figure: </b>The finished stands in service, holding the car at a max working height of 3 feet.</p>
         </div>
 
         <h2 class="section">Problem</h2>
         <p class="content">
-            Given that the accumulator on our Formula SAE car is installed and removed from the underside, the car has to be lifted
-            each time we need to access it. Furthermore, having to work on the car at its operating height becomes very uncomfortable
-            even for short periods of time. With all this in mind, the goal of this project was to build sturdy, modular, and relatively light
+            Due to the design of our Formula SAE car, the accumulator is installed and removed from the underside which requires the car be lifted
+            every time we need to access it. Furthermore, having to work on the car at its suspension set height becomes very uncomfortable
+            even for short periods of time. Given all this in mind, the goal of this project was to build sturdy, modular, and relatively light
             stands that could be used to hold the car at a range of heights and also be transported easily to different locations.
         </p>
 
@@ -25,19 +25,19 @@
             <img src="../details-images/FSAE Stands/car_ground.webp" width="941" height="589"
                 alt="CAD view of the car frame with the accumulator installed underneath" loading="lazy" decoding="async"
                 style="width: 750px; max-width: 100%; height: auto;">
-            <p style="margin-top: 0;"><b>Figure: </b>First CAD iteration of the stand design.</p>
+            <p style="margin-top: 0;"><b>Figure: </b>Mockup of Chassis with Accumulator installed.</p>
         </div>
 
         <h2 class="section">Solution</h2>
         <p class="content">
-            Because of this, I designed a set of welded steel stands that could hold the car at a workable height while leaving the entire underside open. 
-            To adjust the height, you lift the inner tube to its desired height and insert the trailer pin to lock the height in place. Furthermore to 
-            close the gap between the inner and outer tube, a nut was welded to the outer tube and a bolt was inserted to apply pressure to the inner tube to
-            keep it from rattling around.
+            With this in mind, I designed a set of welded steel stands that could hold the car at a max workable height of 36 inches and a minimum height of 20 inches
+            while still leaving enough space on the underside for sliding jacks and for people to work without the stands getting in the way. To adjust the height, you lift the
+            inner tube to its desired height and insert the trailer pin to lock the height in place. As an added bonus, to keep the stands from rattling, a nut was welded onto
+            the outer tube and a bolt would thread through it to apply pressure by closing the clearance between the outer and inner tubes.
         </p>
         <p class="content">
-            During the design of the car stands I deliberately left jacks and leverage systems out of the design to reduce complexity and prioritize modularity.
-            Given that the car is only 450lbs and there are always multiple people working beside or on the car, the car can be lifted by hand and placed
+            During the design of the car stands, I deliberately left jacks and leverage systems out of the design to reduce complexity and prioritize modularity.
+            Given that the car is only 450 lbs and there are usually multiple people working near it, the car can be lifted by hand and placed
             on the stands without any additional tools.
         </p>
 
@@ -57,13 +57,13 @@
 
         <h2 class="section">Tipping Analysis</h2>
         <p class="content">
-            My main concern when designing the stands was not the stand breaking or buckling under load (will confirm later) but rather the stand tipping if someone accidentally
+            One of my main concerns when designing the stands was not the stands breaking or buckling under load but rather the stands tipping if someone accidentally
             leaned on the car or during the uneven removal of some of the heavier components. Because of this, the analysis was built around one question: how much
             force does it take to tip a loaded stand?
         </p>
         <p class="content">
-            To account for worst case scenario, the car was taken as 500 lb over an 84 inch span with its center of mass at (62, 7.75, 6.42) inches from
-            the reference corner of the frame. For the stands, I simulated them weighing around 25 lb at a working height of 36 inches, and a base half
+            To account for the worst case scenario, the car was taken as 450 lb over an 84 inch span with its center of mass at (62, 7.75, 6.42) inches from
+            the reference corner of the frame. For the stands, I simulated them weighing around 30 lb at a working height of 36 inches, and a base half
             width of 17 inches.
         </p>
 
@@ -75,10 +75,10 @@
         </div>
 
         <p class="content">
-            The work was done in two steps. First I solved for the vertical reaction at each stand, since the car's
+            The work was done in two steps. First, I solved for the vertical reaction at each stand, since the car's
             center of mass sits off center and the two ends do not carry equal load. Then I isolated a single stand
             with its own reaction applied and summed moments about the furthest foot from the center of mass to find the horizontal force
-            <i>P</i> that puts the stand on the edge of tipping. Running it that way rather than treating the whole
+            that puts the stand on the edge of tipping. Running it that way rather than treating the whole
             setup as one body matters, because the stand carrying the least load is the one that tips first,
             and that is the number the design has to be sized against.
         </p>
@@ -109,10 +109,10 @@
             <p style="margin-top: 0;"><b>Figure: </b>Stand placement, 21 inches either side of the center of mass.</p>
         </div>
 
-        <h2 class="section">Sizing the Base</h2>
+        <h2 class="section">Initial Considerations</h2>
         <p class="content">
             With the method and equations in place I ran it backwards, picking a target tipping load and asking what the stand
-            would have to look like to survive it. Every target can be met three different ways: ballast the stand,
+            would have to look like to avoid tipping. Every target can be met three different ways: ballast the stand,
             widen its base, or cap how high the car is allowed to go.
         </p>
         <ul>
@@ -121,9 +121,9 @@
             <li>200 lbf: add 460 lb of ballast, or a 68 inch base, or cap the working height at 15 inches.</li>
         </ul>
         <p class="content">
-            Ballast was out, since the whole point is light weight stands. Capping the height defeats the
+            Ballast was out, since the whole point is lightweight stands. Capping the height defeats the
             purpose of the project. That left base width, and 100 lbf at a 34 inch base was the combination that
-            stayed portable, so the base grew from 24 inches to 34 inches.
+            stayed portable, so the base grew from 24 inches to 34 inches which the hand calculations proved would work best.
         </p>
 
         <div style="display: flex; flex-direction: column; align-items: center;">
@@ -141,8 +141,8 @@
 
         <h2 class="section">Modifications</h2>
         <p class="content">
-            The widened base was the main change which meant the stands had to be reworked. Afterwards, to keep the car from sliding off the stands, I added a pair of side stoppers to each stand which keep the car from moving on the stands.
-            I also added a rubber sheet to the top of each stand to protect the frame from scratches. Finally I also added square plates and rubber feet to the bottom of each stand to increase the friction between the stand and the floor.
+            The widened base was the main change, which meant the stands had to be reworked. Afterwards, I added a pair of side stoppers to each stand to keep the car from sliding off.
+            I also added a rubber sheet to the top of each stand to protect the frame from scratches. Finally, I added square plates and rubber feet to the bottom of each stand to increase the friction between the stand and the floor.
         </p>
 
         <div style="display: flex; justify-content: center; flex-wrap: wrap; align-items: flex-start;">
@@ -162,7 +162,7 @@
 
         <h2 class="section">Build</h2>
         <p class="content">
-            Before starting the build, I first designed and built a fixture using a 3/4 inch sheet of plywood and 3D printed guides to hold the steel members to ensure they were at the correct angle and length relative to the entire stand and all 4 stands were built equally. The row of holes up each inner tube is the height
+            Before starting the build, I first designed and built a fixture using a 3/4 inch sheet of plywood and 3D printed guides to hold the steel members, ensuring they were at the correct angle and the correct length relative to the entire stand, and that all four stands were built identically. The row of holes up each inner tube is the height
             adjustment, and the pins that carry the car drop straight through those. Once everything checked out, they were painted red, which is how they sit in the shop today.
         </p>
 
@@ -170,12 +170,12 @@
             <img src="../details-images/FSAE Stands/stands_as_built.webp" width="1400" height="1218"
                 alt="Two finished car stands in raw steel finish before paint" loading="lazy" decoding="async"
                 style="width: 750px; max-width: 100%; height: auto;">
-            <p style="margin-top: 0;"><b>Figure: </b>Two of the stands welded up in raw finish, showing the pinned height adjustment and the widened base.</p>
+            <p style="margin-top: 0;"><b>Figure: </b>The stands after welding was finished, showing the pinned height adjustment and the widened base.</p>
         </div>
 
         <h2 class="section">Validation</h2>
         <p class="content">
-            I ran a Static Study in SolidWorks before committing to the geometry. Probing the reaction at a
+            Prior to manufacturing, I ran a Static Study in SolidWorks before committing to the geometry. Probing the reaction at a
             stand foot in the assembly returned 128 lbf, which lined up with the hand calculations and gave me
             confidence that the free body diagram matched what the model was actually doing.
         </p>
@@ -195,7 +195,7 @@
             works out to a factor of safety of 173 in normal stress and 77 in shear.
         </p>
         <p class="content">
-            Those numbers are well above the material and geometry limitations of the pins and stands which confirm that these stands can withstand the weight of the car and more.
+            Those numbers are well within the material and geometry limitations of the pins and stands, which confirms that these stands can withstand the weight of the car and more.
         </p>
 
         <div style="display: flex; flex-direction: column; align-items: center;">
@@ -208,8 +208,8 @@
         <h2 class="section">Cost</h2>
         <p class="content">
             The early concept was priced against the sawhorses you can buy at a hardware store, and at roughly 40
-            feet of tubing it came in around $150. It was more expensive than an off the shelf sawhorse, but store
-            bought stands do not adjust and do not give the height range the accumulator install needs.
+            feet of tubing it came in around $150. It was more expensive than an off-the-shelf sawhorse, but store-bought
+            stands do not adjust and do not give the height range the accumulator install needs.
         </p>
         <p class="content">
             The final build came in lower. The legs take 34 feet of 1.5 by 1.5 by 0.083 tube plus 4 feet of 1.75 by
@@ -219,6 +219,15 @@
         <p class="content">
             The stands were also drawn with later use in mind. Nothing about the design is specific to this car, and
             there is room to add a leveling system if a future project needs one.
+        </p>
+        <h2 class="section">Things I would change</h2>
+        <p class="content">
+           Overall, the stands worked as expected and haven't had any issues whatsoever. That being said, if I were to build another set, I would run a static study
+           analyzing them from the front and not just the side like the hand calculations covered. My intuition was that since the base is wider in that
+           direction, tipping wasn't really something I needed to worry about there. The side profile is what has the smaller footprint, so that's the
+           case I put more emphasis on. Furthermore, I would also want to run a buckling analysis on the stands. I originally didn't do it since the load on the stands plus the material specs and geometry
+           didn't really cause concern that they could buckle under load. However, it still would have been good to have in order to give a definitive max load the stands can withstand to
+           ensure they are not overloaded.
         </p>
     </body>
 </html>
