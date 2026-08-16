@@ -3,8 +3,8 @@
         <link href="../asset-styles.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <h1 class="header">Simulation and Analysis of Mechanisms</h1>
-        <p class="subber">Solving position, velocity, and acceleration for three linkages in MATLAB</p>
+        <h1 class="header">Simulation and Analysis of Linkage Mechanisms</h1>
+        <p class="subber">Solving for position, velocity, and acceleration of three linkages in MATLAB</p>
 
         <div style="display: flex; flex-direction: column; align-items: center;">
             <img src="../details-images/Simulation and Analysis of Mechanisms/multiloop_angles.webp" width="551" height="418"
@@ -15,31 +15,24 @@
 
         <h2 class="section">Objective</h2>
         <p class="content">
-            The goal was to build a solver that takes a linkage, a set of link lengths, and a prescribed input
-            motion, and returns the full motion of every other link. Not just where the links sit, but how fast
-            each one is turning and how hard it is accelerating, solved at every step of a complete revolution of
-            the input crank rather than at a handful of chosen positions.
+            The goal for this project was to build 3 MATLAB programs, one for each mechanism, that take their respective linkage and output the
+            position, velocity, and acceleration of each link at every step of a complete revolution of the input crank. These are three separate
+            programs rather than one general solver, because the loop closure equations are different for each mechanism and each one is written out
+            and coded by hand.
         </p>
         <p class="content">
-            That is the part that separates this from a position study. Driving the main link through a full
-            rotation produces the angular velocity and angular acceleration of every other link across the entire
-            cycle, so the peaks are found rather than guessed at. Everything is solved numerically rather than
-            graphically, and animated on top of that so the result can be checked by eye instead of only on a plot.
-        </p>
-        <p class="content">
-            I ran it against three mechanisms of increasing difficulty: a four-bar linkage, an offset slider-crank,
-            and a six-bar multi-loop linkage. Each one has one degree of freedom by Gruebler's equation, so once
-            the input link is prescribed the rest of the motion is fully determined. The point of the progression
-            was to build the method on the simplest case and then show it holds up when a second closed loop is
-            added.
+            The three mechanisms get progressively more complex: a four-bar linkage, an offset slider-crank, and a six-bar multi-loop linkage. Each one
+            has one degree of freedom by Gruebler's equation, so once the input link is prescribed the rest of the motion is fully determined. What the
+            three programs do share is the method, since every one of them comes down to writing a vector loop, solving it with Newton-Raphson, and
+            then differentiating the same equations for velocity and acceleration.
         </p>
 
         <h2 class="section">The Mechanisms</h2>
         <p class="content">
-            The four-bar is the base case: four links and four revolute joints, converting continuous rotation of
-            the crank into oscillation of the output rocker. Ground is 100, crank 30, coupler 90, and rocker 80,
-            with the crank as the input. I also ran an offset version, with the second ground pivot raised
-            vertically so the ground link is no longer horizontal.
+            The four-bar is the base case: four links and four revolute joints, converting continuous rotation of the crank into oscillation of the
+            output rocker. The ground, crank, coupler, and rocker are assigned length values of 100, 30, 90, and 80 respectively, with the crank as the
+            input starting at 20 degrees. I also ran an offset version, with the second ground pivot raised vertically so the ground link is no longer
+            horizontal, which means the ground angle is no longer zero in the equations.
         </p>
 
         <div style="display: flex; flex-direction: column; align-items: center;">
@@ -50,24 +43,25 @@
         </div>
 
         <p class="content">
-            The slider-crank converts rotation into straight line reciprocation instead. Crank is 2 inches,
-            connecting rod 4 inches, and the slider path is offset half an inch above the crank's center of
-            rotation. That offset is the interesting part: it breaks the symmetry between the forward and return
-            strokes, so the slider no longer spends equal crank angle travelling each way.
+            The slider-crank converts rotation into straight line reciprocation instead. The crank's length is assigned a value of 2, the connecting
+            rod a value of 4, and the slider path is offset by a value of 0.5 above the crank's center of rotation. That offset is the interesting part
+            since it breaks the symmetry between the forward and return strokes, so the slider no longer spends equal crank angle travelling each way.
+            The crank angle, angular velocity, and angular acceleration are the knowns, and the connecting rod angle and the slider position are what
+            get solved for.
         </p>
 
         <div style="display: flex; flex-direction: column; align-items: center;">
             <img src="../details-images/Simulation and Analysis of Mechanisms/crankslider_diagram.webp" width="915" height="398"
                 alt="Diagram of the offset slider-crank mechanism" loading="lazy" decoding="async"
                 style="width: 720px; max-width: 100%; height: auto;">
-            <p style="margin-top: 0;"><b>Figure: </b>The offset slider-crank, with the slider path half an inch above the crank pivot.</p>
+            <p style="margin-top: 0;"><b>Figure: </b>The offset slider-crank, with the slider path offset above the crank pivot.</p>
         </div>
 
         <p class="content">
-            The six-bar is where it gets harder. Six links and seven revolute joints across two closed loops
-            sharing a common link, so the loops cannot be solved independently. The first loop runs from the input
-            crank through to the pivot at O4, and the second carries that motion onward to O6, with the ground link
-            connecting all three fixed pivots.
+            The six-bar is where it gets harder. Six links and seven revolute joints across two closed loops sharing a common link, so the loops cannot
+            be solved independently. The first loop runs from the input crank through to the pivot at O4, and the second carries that motion onward to
+            O6, with the ground link connecting all three fixed pivots. The seven link lengths are 5, 2, 5, 4, 5, 4.5, and 4.5, and the two fixed ground
+            directions are set at 0 and 10 degrees.
         </p>
 
         <div style="display: flex; flex-direction: column; align-items: center;">
@@ -77,65 +71,202 @@
             <p style="margin-top: 0;"><b>Figure: </b>The six-bar linkage, with the two loops sharing the link at O4.</p>
         </div>
 
-        <h2 class="section">Solving Method</h2>
+        <h2 class="section">Input Motion</h2>
         <p class="content">
-            Every mechanism here reduces to the same idea. Walking around a closed loop of links and returning to
-            the start means the vectors sum to zero, which gives two scalar equations from the x and y components.
-            Those equations are nonlinear in the unknown angles, so there is no closed form to rearrange into.
+            The input crank is prescribed as a function of time, and I ran two cases so the solver could be checked against both a trivial and a
+            non-trivial input. The constant speed case is steady rotation, with the crank angle equal to the elapsed time, the angular velocity fixed at
+            1 rad/s, and the angular acceleration zero. That is the sanity check, since anything strange in the output has to come from the linkage
+            rather than from the input.
         </p>
         <p class="content">
-            The solver handles that with Newton-Raphson. The loop closure equations are written as a residual that
-            should be zero at the correct configuration, the Jacobian of that residual with respect to the unknowns
-            is formed, and the correction is solved from the linear system and applied. That repeats until the
-            correction falls below tolerance, which usually takes only a few iterations per timestep.
+            The non-constant case adds a sinusoidal perturbation on top of that steady rotation, giving a crank angle of t + 0.25 sin(2t), an angular
+            velocity of 1 + 0.5 cos(2t), and an angular acceleration of -sin(2t). The crank speeds up and slows down within each revolution and carries
+            a nonzero angular acceleration throughout. That case matters because the acceleration terms in the equations only get exercised when the
+            input acceleration is not zero, so a solver that only ever sees constant speed input is not really being tested. The four-bar and the
+            slider-crank programs both run the two cases, while the six-bar is driven at constant speed.
+        </p>
+
+        <h2 class="section">Newton-Raphson and Jacobian methods</h2>
+        <p class="content">
+            Every mechanism here reduces to the same idea. Walking around a closed loop of links and returning to the start means the vectors sum to
+            zero, which gives two scalar equations from the x and y components. Those equations are nonlinear in the unknown angles, so there is no
+            closed form to rearrange into.
+        </p>
+        <p class="content">
+            To solve this, I used the Newton-Raphson method, which is basically a numerical way to find the roots of a nonlinear system, meaning the
+            input values that make a set of equations equal zero, by starting with a guess and refining it step by step. I used it here because the loop
+            closure equations for the linkage are nonlinear, they have sines and cosines of the joint angles in them, so there's no clean algebraic way
+            to just solve for the exact configuration. Newton-Raphson gets around that by linearizing the system at each guess and moving closer to the
+            actual solution each time, similar to how you'd use a derivative to find the slope at a point and use that to step closer to where a single
+            equation crosses zero.
+        </p>
+        <p class="content">
+            The difference here is that I don't have just one equation and one unknown, I have a whole system of loop closure equations and a whole set
+            of unknown joint angles, so a single slope isn't enough. That's where the Jacobian comes in. It's basically the multi-variable version of a
+            derivative, a matrix where each entry tells you how much one equation changes when you nudge one specific unknown. So instead of one slope,
+            I get a full grid of slopes that captures how every equation responds to every unknown at once. Newton-Raphson uses that matrix to figure
+            out which direction and how far to move all the joint angles together so that all the residual equations shrink toward zero at the same
+            time.
+        </p>
+        <p class="content">
+            With that in mind, the loop closure equations are written as a residual that should be zero at the correct configuration, the Jacobian of
+            that residual with respect to the unknowns is formed, and the correction is solved from the linear system and applied. That repeats until
+            the correction falls below tolerance, which usually only takes a few iterations per timestep. The four-bar derivation below is the whole
+            method on one page, and the other two mechanisms follow the same steps with their own equations.
+        </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Simulation and Analysis of Mechanisms/fourbar_derivation.webp" width="900" height="1846"
+                alt="Handwritten four-bar derivation covering the vector loop, position equations, Newton-Raphson residual, Jacobian, velocity, and acceleration"
+                loading="lazy" decoding="async" style="width: 520px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>The four-bar worked all the way through, from the vector loop to the acceleration equations. The
+                unknown vector is the coupler and rocker angles, and the same Jacobian carries through all three.</p>
+        </div>
+
+        <p class="content">
+            Velocity and acceleration come out of the same equations rather than needing a separate method. Differentiating the loop closure once with
+            respect to time gives a linear system in the unknown angular velocities, and differentiating again gives one in the angular accelerations.
+            The matrix on the left is the same Jacobian used to solve position, so once position is converged at a timestep, velocity and acceleration
+            are two back substitutions, not two more iterative solutions.
+        </p>
+
+        <h2 class="section">Program 1: The Four-Bar</h2>
+        <p class="content">
+            The four-bar program solves the mechanism in three parts, each one referencing the same user-entered link lengths and input motion. Part A
+            simulates the standard four-bar with no offset, where the ground angle is zero and the position equations collapse to the simpler form shown
+            in the derivation. Because the crank is driven at non-constant speed, angular acceleration is carried through the whole solution rather than
+            dropped.
+        </p>
+        <p class="content">
+            Part B sets an offset on one ground pivot and solves the same two unknowns again for the new geometry, which is the case the general form of
+            the position equations was written for. Part C then takes that offset mechanism and runs it under both input motions, constant speed and
+            non-constant speed, so the two can be compared directly on the same linkage.
+        </p>
+        <p class="content">
+            The solved coupler and rocker angles trace smooth continuous curves over the full run. No discontinuities and no sudden jumps, which is the
+            signature you want, since a jump would mean the solver had flipped to the other assembly branch mid-run. Under the non-constant input the
+            crank angle climbs on a curve instead of a straight line, and the output angles change more quickly later in the run, which is the input
+            acceleration showing up in the output exactly where it should.
+        </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Simulation and Analysis of Mechanisms/fourbar_angles.webp" width="457" height="335"
+                alt="Plot of the coupler and rocker angles against time for the four-bar linkage" loading="lazy" decoding="async"
+                style="width: 620px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>Coupler and rocker angles over time under non-constant input speed.</p>
+        </div>
+
+        <h2 class="section">Program 2: The Offset Slider-Crank</h2>
+        <p class="content">
+            The slider-crank program starts by taking the link lengths, the offset, and the input motion from the user, then solves for the two unknowns
+            that describe the configuration. What makes this one different from the four-bar is that the unknown vector is not two angles. It is the
+            connecting rod angle and the slider position, so one entry is an angle and the other is a length, and the loop closes on the offset line
+            rather than back onto a ground link.
         </p>
 
         <div style="display: flex; flex-direction: column; align-items: center;">
             <img src="../details-images/Simulation and Analysis of Mechanisms/crankslider_derivation.webp" width="906" height="1088"
                 alt="Handwritten derivation of the slider-crank loop closure and Newton-Raphson setup" loading="lazy" decoding="async"
-                style="width: 620px; max-width: 100%; height: auto;">
-            <p style="margin-top: 0;"><b>Figure: </b>Loop closure and the Newton-Raphson setup for the offset slider-crank.</p>
+                style="width: 560px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>Loop closure and the Newton-Raphson setup for the offset slider-crank. The offset enters as the
+                right hand side of the y equation.</p>
         </div>
 
         <p class="content">
-            Velocity and acceleration come out of the same equations rather than needing a separate method.
-            Differentiating loop closure once with respect to time gives a linear system in the unknown angular
-            velocities, and differentiating again gives one in the angular accelerations. The matrix on the left is
-            the same Jacobian used to solve position, so once position is converged at a timestep, velocity and
-            acceleration are two back substitutions, not two more iterative solves.
-        </p>
-        <p class="content">
-            For the six-bar the two loops are handled in sequence. The first loop is solved for its unknowns, and
-            those feed the second loop as knowns, so the shared link ties the two together in the right order.
+            The Jacobian reflects that mixed unknown vector. Differentiating the x equation with respect to the slider position gives a constant entry
+            of -1 rather than a trigonometric term, and differentiating the y equation with respect to it gives zero, since the slider only moves
+            horizontally. Once position is converged, the position equations are differentiated once for the connecting rod angular velocity and the
+            slider velocity, and once more for the accelerations.
         </p>
 
-        <h2 class="section">Input Motion</h2>
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Simulation and Analysis of Mechanisms/crankslider_jacobian.webp" width="1000" height="1155"
+                alt="Handwritten Jacobian, velocity, and acceleration equations for the offset slider-crank" loading="lazy" decoding="async"
+                style="width: 620px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>The slider-crank Jacobian and the velocity and acceleration equations that come from
+                differentiating the position equations.</p>
+        </div>
+
         <p class="content">
-            The input crank is prescribed as a function of time, and I ran two cases so the solver could be checked
-            against both a trivial and a non-trivial input. The constant speed case is steady rotation at 1 rad/s
-            with zero angular acceleration, which is the sanity check, since anything strange in the output has to
-            come from the linkage rather than the input.
+            The result that shows the offset doing something is the comparison run. Plotting the offset case against a zero offset case with everything
+            else identical, the two curves share the same overall stroke but the offset one reaches its minimum later in the revolution and returns on a
+            different path. The stroke is no longer symmetric about the halfway point, which is exactly what an offset buys you and why the geometry
+            gets used deliberately in engines and pumps. Neither curve shows a jump or a break, so the mechanism stays assembled through the whole
+            cycle.
         </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Simulation and Analysis of Mechanisms/slider_comparison.webp" width="551" height="441"
+                alt="Slider position against crank angle, comparing zero offset with a half inch offset" loading="lazy" decoding="async"
+                style="width: 620px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>Slider position with and without the offset, showing the asymmetry it introduces.</p>
+        </div>
+
+        <h2 class="section">Program 3: The Six-Bar Multi-Loop</h2>
         <p class="content">
-            The non-constant case adds a sinusoidal perturbation on top of that steady rotation, so the crank
-            speeds up and slows down within each revolution and carries a nonzero angular acceleration throughout.
-            That case matters because the acceleration terms in the equations only get exercised when the input
-            acceleration is not zero, so a solver that only ever sees constant speed input is not really being
-            tested.
+            The six-bar program is the one where the bookkeeping matters. Two loops have to be written separately before anything can be solved. The
+            first runs from O2 out to A, on to B, back through O4 and home, and the second runs from O4 through B to C, on to O6 and back. Every link is
+            written as a vector with a length and an angle, and each loop is set to sum to zero, which gives an x and a y equation per loop.
         </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Simulation and Analysis of Mechanisms/multiloop_derivation.webp" width="950" height="1010"
+                alt="Handwritten definition of the two loops and their position equations for the six-bar linkage" loading="lazy" decoding="async"
+                style="width: 620px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>The two loops written out, and the position equations that come from setting each one to zero.</p>
+        </div>
+
+        <p class="content">
+            Stacking those four equations gives one residual with four unknowns, the angles of links 3, 4, 5, and 6, which is what Newton-Raphson is
+            handed at each timestep. This is the same method as the four-bar, just with a four by four Jacobian instead of a two by two, and it is the
+            reason the two loops cannot be treated as separate problems. The angle of link 4 appears in both, so it is the shared unknown that ties them
+            together.
+        </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Simulation and Analysis of Mechanisms/multiloop_residual.webp" width="1100" height="361"
+                alt="The four-equation residual vector and four unknown angles for the six-bar linkage" loading="lazy" decoding="async"
+                style="width: 720px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>The four unknown angles and the four residual equations solved together at every timestep.</p>
+        </div>
+
+        <p class="content">
+            Velocity and acceleration are then taken loop by loop. Differentiating the first loop gives the angular velocities of links 3 and 4 from the
+            known input, and those feed the second loop as knowns so it can be solved for links 5 and 6. Differentiating a second time does the same
+            thing for the accelerations, with the centripetal terms in omega squared appearing alongside the alpha terms.
+        </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Simulation and Analysis of Mechanisms/multiloop_velocity.webp" width="850" height="1034"
+                alt="Handwritten velocity and acceleration equations for both loops of the six-bar linkage" loading="lazy" decoding="async"
+                style="width: 560px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>Velocity and acceleration for both loops, with the first loop feeding the second.</p>
+        </div>
+
+        <p class="content">
+            All four unknown angles resolve smoothly across the full revolution and the mechanism returns to its starting configuration after 360
+            degrees of input. That closure is the useful check: it means the errors from a thousand successive Newton-Raphson solves did not accumulate
+            into a drift, and that the second loop stayed consistent with the first the whole way around.
+        </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Simulation and Analysis of Mechanisms/multiloop_animation.webp" width="497" height="797"
+                alt="The six-bar linkage drawn at zero and at 360 degrees of input, in the same configuration" loading="lazy" decoding="async"
+                style="width: 520px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>The six-bar at 0 and at 360 degrees of input, back in the same configuration.</p>
+        </div>
 
         <h2 class="section">Implementation</h2>
         <p class="content">
-            The MATLAB implementation follows the same shape for all three mechanisms. Link lengths, ground angles,
-            and the input motion are set at the top, storage is preallocated for every solved angle, velocity, and
-            acceleration, and then a single loop marches through the input range solving each timestep in turn.
+            All three programs follow the same shape. Link lengths, ground angles, and the input motion are set at the top, storage is preallocated for
+            every solved angle, velocity, and acceleration, and then a single loop marches through the input range solving each timestep in turn.
+            Position is solved first with Newton-Raphson, and the converged angles are what the velocity and acceleration equations are evaluated with.
         </p>
         <p class="content">
-            One detail that matters more than it looks: each timestep starts from the previous timestep's solution
-            as its initial guess. Newton-Raphson converges to whichever solution is nearest the guess, and a
-            linkage generally has more than one valid assembly for the same input angle. Warm starting from the
-            last step keeps the solver on a single branch, which is what stops the animation from snapping into a
-            mirrored configuration partway through a revolution.
+            One detail that matters more than it looks: each timestep starts from the previous timestep's solution as its initial guess. Newton-Raphson
+            converges to whichever solution is nearest the guess, and a linkage generally has more than one valid assembly for the same input angle.
+            Warm starting from the last step keeps the solver on a single branch, which is what stops the animation from snapping into a mirrored
+            configuration partway through a revolution.
         </p>
 
         <div style="display: flex; flex-direction: column; align-items: center;">
@@ -146,68 +277,22 @@
         </div>
 
         <p class="content">
-            The animation is driven off the solved angles rather than being a separate calculation. Each frame
-            rebuilds the joint coordinates from the link lengths and the angles at that timestep and redraws the
-            links, so if the solver ever produced an inconsistent set of angles the links would visibly come apart
-            on screen. That makes it a much faster check than reading four overlaid angle curves.
-        </p>
-
-        <h2 class="section">Results</h2>
-        <p class="content">
-            On the four-bar, the solved coupler and rocker angles trace smooth continuous curves over the full run.
-            No discontinuities and no sudden jumps, which is the signature you want, since a jump would mean the
-            solver had flipped to the other assembly branch mid-run.
-        </p>
-
-        <div style="display: flex; flex-direction: column; align-items: center;">
-            <img src="../details-images/Simulation and Analysis of Mechanisms/fourbar_angles.webp" width="457" height="335"
-                alt="Plot of the coupler and rocker angles against time for the four-bar linkage" loading="lazy" decoding="async"
-                style="width: 620px; max-width: 100%; height: auto;">
-            <p style="margin-top: 0;"><b>Figure: </b>Coupler and rocker angles over time under non-constant input speed.</p>
-        </div>
-
-        <p class="content">
-            The slider-crank result is the one that shows the offset doing something. Plotting the offset case
-            against a zero offset case with everything else identical, the two curves share the same overall
-            stroke but the offset one reaches its minimum later in the revolution and returns on a different path.
-            The stroke is no longer symmetric about the halfway point, which is exactly what an offset buys you and
-            why the geometry gets used deliberately in engines and pumps.
-        </p>
-
-        <div style="display: flex; flex-direction: column; align-items: center;">
-            <img src="../details-images/Simulation and Analysis of Mechanisms/slider_comparison.webp" width="551" height="441"
-                alt="Slider position against crank angle, comparing zero offset with a half inch offset" loading="lazy" decoding="async"
-                style="width: 620px; max-width: 100%; height: auto;">
-            <p style="margin-top: 0;"><b>Figure: </b>Slider position with and without the offset, showing the asymmetry it introduces.</p>
-        </div>
-
-        <p class="content">
-            The same run also produces the angular velocity and angular acceleration of every link at every one of
-            those steps, not only the angles. Because the input crank is swept through a complete revolution, the
-            velocity and acceleration curves cover the whole cycle, so where each link reaches its fastest and
-            where it sees its highest acceleration both fall straight out of the results instead of having to be
-            looked for.
+            The animation is driven off the solved angles rather than being a separate calculation. Each frame rebuilds the joint coordinates from the
+            link lengths and the angles at that timestep and redraws the links, so if the solver ever produced an inconsistent set of angles the links
+            would visibly come apart on screen. That makes it a much faster check than reading four overlaid angle curves.
         </p>
         <p class="content">
-            On the six-bar, all four unknown angles resolve smoothly across the full revolution and the mechanism
-            returns to its starting configuration after 360 degrees of input. That closure is the useful check:
-            it means the errors from a thousand successive Newton-Raphson solves did not accumulate into a drift,
-            and that the second loop stayed consistent with the first the whole way around.
+            Each program also produces the angular velocity and angular acceleration of every link at every one of those steps, not only the angles.
+            Because the input crank is swept through a complete revolution, the velocity and acceleration curves cover the whole cycle, so where each
+            link reaches its fastest and where it sees its highest acceleration both fall straight out of the results instead of having to be looked
+            for.
         </p>
-
-        <div style="display: flex; flex-direction: column; align-items: center;">
-            <img src="../details-images/Simulation and Analysis of Mechanisms/multiloop_animation.webp" width="497" height="797"
-                alt="The six-bar linkage drawn at zero and at 360 degrees of input, in the same configuration" loading="lazy" decoding="async"
-                style="width: 520px; max-width: 100%; height: auto;">
-            <p style="margin-top: 0;"><b>Figure: </b>The six-bar at 0 and at 360 degrees of input, back in the same configuration.</p>
-        </div>
 
         <h2 class="section">What I Would Change</h2>
         <p class="content">
-            The solver is written around three specific mechanisms, with the loop closure equations for each
-            hardcoded. The obvious next step is to take the linkage topology as input, build the loop equations
-            from a connectivity description rather than by hand, and let links be added or removed to see how that
-            changes the output motion. That turns this from three solvers that share a method into one solver.
+            Writing three programs meant writing the loop closure equations three times by hand, and that is the part that does not scale. The obvious
+            next step is to take the linkage topology as input, build the loop equations from a connectivity description rather than by hand, and let
+            links be added or removed to see how that changes the output motion. That turns this from three solvers that share a method into one solver.
         </p>
     </body>
 </html>
