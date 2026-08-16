@@ -10,31 +10,34 @@
             <img src="../details-images/Truss Bridge Project/bridge_finished.webp" width="1400" height="863"
                 alt="The finished straw truss bridge next to the 3D printed fixture it was built on" decoding="async"
                 style="width: 750px; max-width: 100%; height: auto;">
-            <p style="margin-top: 0;"><b>Figure: </b>The finished bridge, with the printed fixture it was assembled on sitting in front of it.</p>
+            <p style="margin-top: 0;"><b>Figure: </b>The finished bridge with the printed fixture used to assemble it.</p>
         </div>
 
-        <h2 class="section">Problem</h2>
+        <h2 class="section">Objective</h2>
         <p class="content">
-            The goal of this project was to build a truss bridge made entirely out of polypropylene drinking straws that would be supported at both
-            ends and loaded at midspan. What made this project different from most is that nothing about the bridge is scored on its own, only how much
-            load it carries relative to how much it weighs. Because of this, every gram of material has to earn its place and any member that is
-            not carrying load is actively costing points.
-        </p>
-        <p class="content">
-            The figure of merit was structural efficiency, which is the mass equivalent of the load the bridge carries divided by the mass of the
-            bridge itself. Working off a typical bridge weight of 24 grams, we set a target of 245.5 and a load goal of 8 kilograms.
+            The goal of this project was to build a truss bridge made entirely out of drinking straws that would be supported at both
+            ends and loaded at its center. What made this project different others is that it would be scored in terms of how much load it could hold relative 
+            to the weight of the bridge and how accuarte your prediction of the failure method/point given a certain load was to the actaul results. That meant that every member on the bridge needs to be dilligently analyzsed through both hand calculations and similuations
+            to ensure that the memeber was actually increasing the strenght of the bridge but not at the cost of reducting its relative strenght factor. Furtheremore, accuracy of failure method and load could only be 
+            confidenlty confirmed after extensive analysis.
         </p>
 
         <h2 class="section">Approach</h2>
         <p class="content">
-            With this in mind, I worked the problem in three passes that each check the one before it. First, hand calculations to find where the load
-            actually goes and what the members can take. Then simulation to compare the arrangements that hand calculations cannot separate. Finally, a
-            purpose built fixture so that the structure that gets glued together is the same one that was analyzed.
+            With these requirements in mind, the first step was obtaining the most accurate material specifications of the drinking straws and then
+            using calipers to get the outer and inner diameter of the straw's cross-sectional area. I would then take this information and import it into Solidworks' weldment library
+            to make a custom weldment using both the geometry and material specs found, to ensure that the static and buckling analysis gave an accurate depiction of my exact straws under load.
+        </p>
+        <p class="content">
+         After confirming that, the next step was to reference a pre-existing Parker bridge when building a 3D sketch of my bridge in Solidworks and
+            perform continous static and buckling analyses until I reached my desired relative strength factor. I would play around with different member positions and use more or less members to optimize the bridge
+            for my specific purpose. It wasn't guesswork but rather analyzing the stress concentrations and areas where the bridge buckled, and either adding an additional member,
+            modifying the orientation of the member, or completly changing the bridge design to reduce those high buckling areas and the stress found at certain areas under a certain load.
         </p>
 
-        <h2 class="section">Member Forces</h2>
+        <h2 class="section">Method of Joints and Sections Analysis</h2>
         <p class="content">
-            The first pass was the method of joints, run by hand on the side view. Given that the design is symmetric, solving half of it describes the
+            When incorporating hand calcualtions, the method of joints and method of sections were utilized to further add to the credibilty of our values. Given that the design is symmetric, solving half of it can accuralety describes the
             whole structure. At a 13 pound load the distribution came out very lopsided. The members directly above the load carry the bulk of it, up
             to 31.75 pounds in the worst member, while one vertical sits at zero.
         </p>
@@ -53,7 +56,7 @@
 
         <h2 class="section">Buckling Calculation</h2>
         <p class="content">
-            Straws in compression don't fail by crushing, they fail by buckling, so the governing check was slenderness. Comparing the slenderness
+            Straws in compression won't fail by crushing, they will fail first by buckling, so the governing check was slenderness. Comparing the slenderness
             ratio of the members against the transition value for the material put the design in the Euler regime rather than the Johnson regime,
             which set which critical load formula applies.
         </p>
@@ -71,9 +74,9 @@
             sanity check the scale of the answer while SolidWorks did the comparison work.
         </p>
 
-        <h2 class="section">Layout Study</h2>
+        <h2 class="section">Static and Buckling Simulation Analysis</h2>
         <p class="content">
-            This is where the real gains were. The side truss geometry was settled early, but the members connecting the two side trusses were not, and
+            This is where the most accurate values could be expected to see. The side truss geometry was settled early, but the members connecting the two side trusses were not, and
             where those sit changes the entire failure picture. Because of this, I built variants that moved those members to different locations along
             the span and changed their orientation, then ran every variant through a buckling study at the same 12 lbf load so that the results could be
             compared directly against each other.
@@ -134,30 +137,48 @@
 
         <h2 class="section">Failure Prediction</h2>
         <p class="content">
-            With the layout settled, I ran a static study at 20 lbf to pin down where the bridge would let go and how much it would move getting there.
-            Peak resultant displacement came out at 14.3 mm, and the highest combined axial and bending stress landed on the top chord directly above
-            the load.
+            With the layout settled, the last question was where the bridge would actually let go. A static study at 20 lbf put peak resultant
+            displacement at 14.3 mm and landed the highest combined axial and bending stress on the top chord directly above the load, and the buckling
+            studies were there to check that answer from a different direction. Both plots below are the first mode shape at a 12 lbf load, and in both
+            of them the amplitude collects in the same place.
         </p>
 
         <div style="display: flex; flex-direction: column; align-items: center;">
-            <img src="../details-images/Truss Bridge Project/static_displacement.webp" width="1400" height="963"
-                alt="Static displacement plot of the bridge at 20 lbf" loading="lazy" decoding="async"
+            <img src="../details-images/Truss Bridge Project/failure_mode_side.webp" width="1400" height="1145"
+                alt="Buckling amplitude plot of the bridge at a load factor of 0.554" loading="lazy" decoding="async"
                 style="width: 750px; max-width: 100%; height: auto;">
-            <p style="margin-top: 0;"><b>Figure: </b>Static displacement at 20 lbf, peaking at 14.3 mm under the load point.</p>
+            <p style="margin-top: 0;"><b>Figure: </b>Buckling amplitude for mode shape 1 at 12 lbf, load factor 0.554. The deformation collects in the
+                top chord and the cross bracing directly above the load point, drawn at a deformation scale of 2.48.</p>
         </div>
 
         <div style="display: flex; flex-direction: column; align-items: center;">
-            <img src="../details-images/Truss Bridge Project/static_stress.webp" width="1085" height="658"
-                alt="Static study showing upper bound axial and bending stress in the truss" loading="lazy" decoding="async"
+            <img src="../details-images/Truss Bridge Project/failure_mode_above.webp" width="1400" height="1217"
+                alt="Buckling amplitude plot seen from above at a load factor of 0.373" loading="lazy" decoding="async"
                 style="width: 750px; max-width: 100%; height: auto;">
-            <p style="margin-top: 0;"><b>Figure: </b>Axial and bending stress, concentrated in the top four members above the load.</p>
+            <p style="margin-top: 0;"><b>Figure: </b>The same failure site seen from above, mode shape 1 at 12 lbf and a load factor of 0.373. The top
+                chord and the bracing across midspan carry the highest amplitude while the two end bays sit near zero, at a deformation scale of 1.44.</p>
         </div>
 
         <p class="content">
             The static study, the buckling study, and the hand calculations all pointed at the same failure site, which was the top four members
             directly above the load. Having three independent methods land on the same answer was the point where the design was worth committing
-            material to.
+            material to and a designated failure point too.
         </p>
+
+        <h2 class="section">Assembly Fixture</h2>
+        <p class="content">
+            Before any straws got cut, the fixture was modeled with the finished truss sitting in it so the two could be checked against each other.
+            The profile plate carries the outline of the side truss and the clamps come down on the members from above, which is what keeps the built
+            geometry the same as the geometry every study was run on.
+        </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Truss Bridge Project/bridge_on_fixture_cad.webp" width="749" height="582"
+                alt="CAD model of the side truss seated on its printed fixture" loading="lazy" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>The CAD model of the side truss seated on its fixture, with the profile plate in red and the clamps
+                holding the members down against it.</p>
+        </div>
 
         <h2 class="section">Build</h2>
         <p class="content">
@@ -182,7 +203,7 @@
         <h2 class="section">Result</h2>
         <p class="content">
             The bridge that came out of it weighed 20 grams and held 19 pounds. By the same efficiency measure we set the target with, that is a ratio
-            of roughly 430 against a goal of 245.5.
+            of roughly 430.
         </p>
         <p class="content">
             Almost none of that came from adding material. The variants were within a gram of each other, so the result was bought with member placement
@@ -203,12 +224,11 @@
 
         <h2 class="section">Things I would change</h2>
         <p class="content">
-            Overall, the bridge came out well and beat the target by a wide margin. That being said, if I were to do this project again, the first thing
+            Overall, the bridge came out well and beat the target by a wide margin. That being said, If I were to do this project again, the first thing
             I would change is how the joints were treated. Every model I ran assumed the members were connected perfectly, but the glued joints are the
             part I had the least visibility into, and on a structure this light they are where most of the uncertainty actually is. Furthermore, I would
             want to figure out why the buckling studies came out so conservative. The layout we built buckled at a load factor of 0.622 in simulation
-            but the bridge held 19 pounds on the rig, so the ranking between the layouts was right even though the absolute numbers were nowhere close.
-            Knowing where that gap comes from would let me trust a model like this for sizing and not just for comparison. Finally, I would build the
+            but the bridge held 19 pounds on the rig, so in theory it should have failed under 18lbs but didnt. Knowing where that gap comes from would let me trust a model like this for sizing and not just for comparison. Finally, I would build the
             fixture earlier. It went through its own revisions while the bridge design was still moving, and the panels that came off the first version
             had the chord lifting away from the profile, which is exactly the kind of error the fixture was supposed to prevent in the first place.
         </p>
