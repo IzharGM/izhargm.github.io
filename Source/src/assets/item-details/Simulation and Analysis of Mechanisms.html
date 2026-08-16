@@ -60,8 +60,13 @@
         <p class="content">
             The six-bar is where it gets harder. Six links and seven revolute joints across two closed loops sharing a common link, so the loops cannot
             be solved independently. The first loop runs from the input crank through to the pivot at O4, and the second carries that motion onward to
-            O6, with the ground link connecting all three fixed pivots. The seven link lengths are 5, 2, 5, 4, 5, 4.5, and 4.5, and the two fixed ground
-            directions are set at 0 and 10 degrees.
+            O6, with the ground link connecting all three fixed pivots.
+        </p>
+        <p class="content">
+            The moving links are the input crank L2 at a length of 2, the coupler L3 at 5, the shared link L4 at 4, and then L5 at 5 and L6 at 4.5
+            carrying the motion through the second loop. The ground is fixed, so it is written as two vectors between the three fixed pivots: L1 at 5
+            from O2 to O4, held at 0 degrees, and L7 at 4.5 from O4 to O6, held at 10 degrees. Those two are the reason seven lengths show up in the
+            equations for what is still a six-link mechanism.
         </p>
 
         <div style="display: flex; flex-direction: column; align-items: center;">
