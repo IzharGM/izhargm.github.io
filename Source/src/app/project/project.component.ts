@@ -5,6 +5,14 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 // Give up on the growth poll if the document never fires `load` (bad path, dead asset).
 const POLL_TIMEOUT_MS = 15000;
 
+// The detail pages are plain HTML files under assets, so they carry GitHub Pages'
+// default ten minute cache and nothing in their URL changes when they are edited.
+// A browser will keep showing a stale one inside the iframe long after a deploy,
+// and reloading the app shell does not refetch it. Stamping the URL once per page
+// load means a refresh always brings the current file, while moving between
+// projects in the same session still reuses what was already fetched.
+const CACHE_BUST = Date.now();
+
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
@@ -30,7 +38,8 @@ export class ProjectComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit(): void {
     this.projectName = this.route.snapshot.paramMap.get('title')
-    this.projectSrc = this.sanitizer.bypassSecurityTrustResourceUrl('assets/item-details/' + this.projectName + '.html')
+    this.projectSrc = this.sanitizer.bypassSecurityTrustResourceUrl(
+      'assets/item-details/' + this.projectName + '.html?v=' + CACHE_BUST)
     window.scroll(0,0)
   }
 
