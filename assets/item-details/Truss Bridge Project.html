@@ -13,31 +13,30 @@
             <p style="margin-top: 0;"><b>Figure: </b>The finished bridge, with the printed fixture it was assembled on sitting in front of it.</p>
         </div>
 
-        <h2 class="section">Introduction</h2>
+        <h2 class="section">Problem</h2>
         <p class="content">
-            The objective was a truss bridge built entirely from polypropylene drinking straws, supported at both
-            ends, loaded at midspan, and scored on how much load it carries relative to how much it weighs. Nothing
-            about the structure is judged in isolation, only that ratio, so every gram of material has to be
-            earning its place and any member that is not carrying load is actively costing points.
+            The goal of this project was to build a truss bridge made entirely out of polypropylene drinking straws that would be supported at both
+            ends and loaded at midspan. What made this project different from most is that nothing about the bridge is scored on its own, only how much
+            load it carries relative to how much it weighs. Because of this, every gram of material has to earn its place and any member that is
+            not carrying load is actively costing points.
         </p>
         <p class="content">
-            The figure of merit was structural efficiency, the mass equivalent of the load the bridge carries
-            divided by the mass of the bridge itself. Working from a typical bridge weight of 24 grams, we set a
-            target of 245.5 and a load goal of 8 kilograms.
+            The figure of merit was structural efficiency, which is the mass equivalent of the load the bridge carries divided by the mass of the
+            bridge itself. Working off a typical bridge weight of 24 grams, we set a target of 245.5 and a load goal of 8 kilograms.
         </p>
+
+        <h2 class="section">Approach</h2>
         <p class="content">
-            The approach was to work the problem in three passes that each check the one before it. Hand
-            calculations to find where the load actually goes and what the members can take, simulation to compare
-            arrangements that hand calculation cannot separate, and a purpose built fixture so that the structure
-            that gets glued together is the one that was analyzed.
+            With this in mind, I worked the problem in three passes that each check the one before it. First, hand calculations to find where the load
+            actually goes and what the members can take. Then simulation to compare the arrangements that hand calculations cannot separate. Finally, a
+            purpose built fixture so that the structure that gets glued together is the same one that was analyzed.
         </p>
 
         <h2 class="section">Member Forces</h2>
         <p class="content">
-            The first pass was the method of joints, run by hand on the side view. The design is symmetric, so
-            solving half of it describes the whole structure. At a 13 pound load the distribution comes out very
-            lopsided: the members directly above the load carry the bulk of it, up to 31.75 pounds in the worst
-            member, while one vertical sits at zero.
+            The first pass was the method of joints, run by hand on the side view. Given that the design is symmetric, solving half of it describes the
+            whole structure. At a 13 pound load the distribution came out very lopsided. The members directly above the load carry the bulk of it, up
+            to 31.75 pounds in the worst member, while one vertical sits at zero.
         </p>
 
         <div style="display: flex; flex-direction: column; align-items: center;">
@@ -48,17 +47,15 @@
         </div>
 
         <p class="content">
-            That result set the priorities for everything after it. A zero force member is a candidate for removal
-            or for being repurposed as bracing, and the heavily loaded top members are where the design either
-            survives or does not.
+            That result set the priorities for everything after it. A zero force member is a candidate for removal or for being repurposed as bracing,
+            and the heavily loaded top members are where the design either survives or doesn't.
         </p>
 
         <h2 class="section">Buckling Calculation</h2>
         <p class="content">
-            Straws in compression do not fail by crushing, they fail by buckling, so the governing check was
-            slenderness. Comparing the slenderness ratio of the members against the transition value for the
-            material put the design in the Euler regime rather than the Johnson regime, which set which critical
-            load formula applies.
+            Straws in compression don't fail by crushing, they fail by buckling, so the governing check was slenderness. Comparing the slenderness
+            ratio of the members against the transition value for the material put the design in the Euler regime rather than the Johnson regime,
+            which set which critical load formula applies.
         </p>
 
         <div style="display: flex; flex-direction: column; align-items: center;">
@@ -69,19 +66,17 @@
         </div>
 
         <p class="content">
-            Running the Euler critical load gave 5892.5 grams, roughly 13 pounds. We treated that as a bound rather
-            than a prediction. Hand calculation on a structure with this many joints leaves room for arithmetic
-            error, so the number was there to sanity check the scale of the answer while SolidWorks did the
-            comparison work.
+            Running the Euler critical load gave 5892.5 grams, which is roughly 13 pounds. That being said, I treated that as a bound rather than a
+            prediction. Hand calculations on a structure with this many joints leave plenty of room for arithmetic error, so the number was there to
+            sanity check the scale of the answer while SolidWorks did the comparison work.
         </p>
 
         <h2 class="section">Layout Study</h2>
         <p class="content">
-            This was where the real gains were. The side truss geometry was settled early, but the
-            members connecting the two side trusses were not, and where those sit changes the entire failure
-            picture. I built variants that moved those members to different locations along the span and changed
-            their orientation, then ran every variant through a buckling study at the same 12 lbf load so the
-            results could be compared directly against each other.
+            This is where the real gains were. The side truss geometry was settled early, but the members connecting the two side trusses were not, and
+            where those sit changes the entire failure picture. Because of this, I built variants that moved those members to different locations along
+            the span and changed their orientation, then ran every variant through a buckling study at the same 12 lbf load so that the results could be
+            compared directly against each other.
         </p>
 
         <div style="display: flex; flex-direction: column; align-items: center;">
@@ -92,10 +87,9 @@
         </div>
 
         <p class="content">
-            Looking at the same variant from above makes the problem obvious. The two side trusses are splaying
-            away from each other at midspan and pinching back in, which is the connecting members failing to tie
-            the two sides together where the load goes in. The bridge is not failing as one structure, it is
-            failing as two panels that happen to be near each other.
+            Looking at the same variant from above makes the problem obvious. The two side trusses are splaying away from each other at midspan and
+            pinching back in, which is the connecting members failing to tie the two sides together where the load goes in. In other words, the bridge
+            isn't failing as one structure, it's failing as two panels that happen to be next to each other.
         </p>
 
         <div style="display: flex; flex-direction: column; align-items: center;">
@@ -106,11 +100,10 @@
         </div>
 
         <p class="content">
-            Moving the connecting members and reorienting them pushed the load factor up to 0.373, and the mode
-            shape changed character. Instead of the whole midspan opening up, the deformation concentrated in the
-            top chord directly above the load, which is where the method of joints said the highest forces were.
-            Getting the failure back into the member that is genuinely the most loaded meant the bracing was
-            finally doing its job.
+            Moving the connecting members and reorienting them pushed the load factor up to 0.373, and the mode shape changed character. Instead of the
+            whole midspan opening up, the deformation concentrated in the top chord directly above the load, which is where the method of joints said
+            the highest forces were. Getting the failure back into the member that is genuinely the most loaded meant the bracing was finally doing its
+            job.
         </p>
 
         <div style="display: flex; flex-direction: column; align-items: center;">
@@ -121,9 +114,9 @@
         </div>
 
         <p class="content">
-            The best combination reached a load factor of 0.622, close to three times the worst arrangement for no
-            change in material. All of the variants weighed about the same, so the entire gain came from where the
-            connecting members went and how they were oriented, not from adding straws.
+            The best combination reached a load factor of 0.622, which is close to three times the worst arrangement for no change in material. All of
+            the variants weighed about the same, so the entire gain came from where the connecting members went and how they were oriented, and not from
+            adding straws.
         </p>
 
         <div style="display: flex; flex-direction: column; align-items: center;">
@@ -134,16 +127,16 @@
         </div>
 
         <p class="content">
-            I was using the model comparatively rather than as an absolute prediction. The load factors are
-            conservative against what the bridge actually did on the test rig, but the ranking between layouts is
-            what the decision needed, and the ranking is the part a model like this gets right.
+            It is worth mentioning that I was using the model comparatively and not as an absolute prediction. The load factors are conservative against
+            what the bridge actually did on the test rig, but the ranking between the layouts is what the decision needed, and the ranking is the part a
+            model like this gets right.
         </p>
 
         <h2 class="section">Failure Prediction</h2>
         <p class="content">
-            With the layout settled, a static study at 20 lbf was used to pin down where the bridge would let go
-            and how much it would move getting there. Peak resultant displacement came out at 14.3 mm, and the
-            highest combined axial and bending stress landed on the top chord directly above the load.
+            With the layout settled, I ran a static study at 20 lbf to pin down where the bridge would let go and how much it would move getting there.
+            Peak resultant displacement came out at 14.3 mm, and the highest combined axial and bending stress landed on the top chord directly above
+            the load.
         </p>
 
         <div style="display: flex; flex-direction: column; align-items: center;">
@@ -161,17 +154,17 @@
         </div>
 
         <p class="content">
-            The static study, the buckling study, and the hand calculation all pointed at the same failure site,
-            the top four members directly above the load. Three independent methods converging on the same answer
-            was the point at which the design was worth committing material to.
+            The static study, the buckling study, and the hand calculations all pointed at the same failure site, which was the top four members
+            directly above the load. Having three independent methods land on the same answer was the point where the design was worth committing
+            material to.
         </p>
 
         <h2 class="section">Build</h2>
         <p class="content">
-            Building a truss out of straws by eye does not work. The joints have to land in the right place or the
-            geometry that all of the analysis assumed is not the geometry that gets built, so I designed a 3D
-            printed fixture in the shape of the side truss with the member paths recessed into it. The straws drop
-            into those pockets, get held down while the joints set, and every side panel comes out identical.
+            Building a truss out of straws by eye doesn't work. The joints have to land in the right place or the geometry that all of the analysis
+            assumed is not the geometry that gets built. Because of this, I designed and printed a fixture in the shape of the side truss with the
+            member paths recessed into it. The straws drop into those pockets, get held down while the joints set, and every side panel comes out
+            identical.
         </p>
 
         <div style="display: flex; flex-direction: column; align-items: center;">
@@ -182,19 +175,18 @@
         </div>
 
         <p class="content">
-            The fixture went through its own revisions alongside the bridge. The version shown here holds the
-            members down at every node, which was the fix for panels coming out of the earlier fixture with the
-            chord lifting away from the profile.
+            The fixture went through its own revisions alongside the bridge. The version shown here holds the members down at every node, which was the
+            fix for panels coming out of the earlier fixture with the chord lifting away from the profile.
         </p>
 
         <h2 class="section">Result</h2>
         <p class="content">
-            The bridge that came out of it weighed 20 grams and held 19 pounds. By the same efficiency measure we
-            set the target with, that is a ratio of roughly 430, against a goal of 245.5.
+            The bridge that came out of it weighed 20 grams and held 19 pounds. By the same efficiency measure we set the target with, that is a ratio
+            of roughly 430 against a goal of 245.5.
         </p>
         <p class="content">
-            Almost none of that came from adding material. The variants were within a gram of each other, so the
-            result was bought with member placement and orientation, which cost nothing.
+            Almost none of that came from adding material. The variants were within a gram of each other, so the result was bought with member placement
+            and orientation, which cost nothing.
         </p>
 
         <div style="display: flex; flex-direction: column; align-items: center;">
@@ -208,6 +200,18 @@
             </button>
             <p style="margin-top: 0;"><b>Video: </b>The load test, with the bridge pulled down against the frame until it failed.</p>
         </div>
+
+        <h2 class="section">Things I would change</h2>
+        <p class="content">
+            Overall, the bridge came out well and beat the target by a wide margin. That being said, if I were to do this project again, the first thing
+            I would change is how the joints were treated. Every model I ran assumed the members were connected perfectly, but the glued joints are the
+            part I had the least visibility into, and on a structure this light they are where most of the uncertainty actually is. Furthermore, I would
+            want to figure out why the buckling studies came out so conservative. The layout we built buckled at a load factor of 0.622 in simulation
+            but the bridge held 19 pounds on the rig, so the ranking between the layouts was right even though the absolute numbers were nowhere close.
+            Knowing where that gap comes from would let me trust a model like this for sizing and not just for comparison. Finally, I would build the
+            fixture earlier. It went through its own revisions while the bridge design was still moving, and the panels that came off the first version
+            had the chord lifting away from the profile, which is exactly the kind of error the fixture was supposed to prevent in the first place.
+        </p>
 
         <script>
             // Mount the real YouTube player only once the reader asks for it.
