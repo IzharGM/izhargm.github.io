@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <!-- Declared explicitly because the title carries a non-ASCII character. -->
+        <meta charset="utf-8">
+        <link href="../asset-styles.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <h1 class="header">Star SK-51 High-Pressure Coolant Integration (Müller CL3G)</h1>
+        <p class="subber">Integrating a Müller CL3G high-pressure coolant unit into a Star SK-51</p>
+
+        <h2 class="section">Problem</h2>
+        <p class="content">
+            The Star SK-51 needed higher pressure coolant running through it to properly cool the tools we were using, especially since a lot of our
+            drills are extremely small and have tiny through holes for coolant delivery. With drills that small, standard coolant pressure isn't enough
+            to actually get fluid through the hole and onto the cutting edge where it's needed. Higher pressure was also necessary to help clear the
+            chips being produced, since without enough force behind the coolant, the chips can't be pushed off the tool effectively, which leads to
+            recutting, poor chip evacuation, and a worse surface finish. Given all this, the goal was to integrate a Müller CL3G high-pressure coolant
+            unit into the SK-51 to provide the pressure needed for both proper cooling and clean chip removal.
+        </p>
+
+        <h2 class="section">Hydraulic and Electrical Considerations</h2>
+        <p class="content">
+            On the hydraulic side, the first step was going through the OEM schematic for the SK-51 to understand how the existing coolant system was
+            laid out and to figure out what fitting sizes, hose sizes, and pressure ratings we would need for the new lines running between the Müller
+            unit and the machine. Once I understood the existing setup, I made a new schematic that reflected the changes we wanted and showed how
+            everything would actually be run going forward. One of the SK-51's existing coolant pumps, the one supplying high pressure to Turret 1, was
+            removed and that line was rerouted to the Müller instead. Turret 2 and the sub spindle presented a bigger issue, since both were fed off the
+            same high pressure line. We wanted the sub spindle to keep running off the SK-51's OEM pump while Turret 2 ran off the Müller, so those two
+            lines had to be separated and made fully independent of each other before anything else could be connected. I presented the updated schematic
+            to the Senior Manufacturing Quality Engineer for review, and then used it again when the hose and fitting supplier came in so I could
+            accurately walk him through exactly what we needed.
+        </p>
+        <p class="content">
+            The electrical and programming work came out of how the SK-51 handles coolant control. The machine uses its own solenoid valves to determine
+            whether high pressure runs through a given line, but the Müller already has its own valve block doing the same job. Rather than run coolant
+            through both sets of valves, the goal was to let the Müller handle the switching directly, which meant the SK-51 had to be able to operate
+            normally without its own valves being in the path first. That required electrical modifications so the machine's control signals could drive
+            the Müller's valve block instead of its own solenoids, along with programming changes so the SK-51 would still see the coolant system as
+            functioning correctly and wouldn't fault out or behave unexpectedly during operation.
+        </p>
+    </body>
+</html>

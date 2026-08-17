@@ -62,6 +62,15 @@ export const Projects: CardItem[] = [
         thumbHeight: 238
     },
     {
+        title: "Star SK-51 High-Pressure Coolant Integration (Müller CL3G)",
+        description: "Integrating a Müller CL3G high-pressure coolant unit into a Star SK-51 so the small drills we run get enough pressure through their coolant holes to cool the cutting edge and clear chips, covering the hydraulic reroute and moving valve control over to the Müller.",
+        category: "Manufacturing",
+        date: "8/16/2026",
+        skills: ["Hydraulic Schematics", "Hose & Fitting Sizing", "High-Pressure Coolant", "Electrical Integration", "Machine Programming", "Swiss CNC Lathe"],
+        thumbWidth: 403,
+        thumbHeight: 229
+    },
+    {
         title: "UAV Gimbal Mechanism",
         description: "I reverse engineered a UAV gimbal that will be used in the 2027 SUAS competition.",
         category: "Mechatronics",
