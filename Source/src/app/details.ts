@@ -71,6 +71,15 @@ export const Projects: CardItem[] = [
         thumbHeight: 229
     },
     {
+        title: "SCHUNK Gripper Installation on a Star SW-12RII",
+        description: "Installing SCHUNK pneumatic grippers on our Star SW-12 lathes so finished contacts are set onto the conveyor instead of dropped, covering the pneumatic and electrical routing, floating calibration between the gripper and the spindle, and a reverse modeled CAD of the machine for the install manual.",
+        category: "Manufacturing",
+        date: "8/16/2026",
+        skills: ["Pneumatic Systems", "Electrical Routing", "Floating Calibration", "Reverse Engineering", "SolidWorks", "Technical Documentation"],
+        thumbWidth: 330,
+        thumbHeight: 440
+    },
+    {
         title: "UAV Gimbal Mechanism",
         description: "I reverse engineered a UAV gimbal that will be used in the 2027 SUAS competition.",
         category: "Mechatronics",
