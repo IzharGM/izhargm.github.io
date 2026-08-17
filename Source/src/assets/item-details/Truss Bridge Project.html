@@ -41,7 +41,7 @@
 
         <h2 class="section">Method of Joints and Sections Analysis</h2>
         <p class="content">
-            When incorporating hand calculations, the method of joints and the method of sections were used to further add to the credibility of our
+            When incorporating hand calculations, the method of joints and the method of sections were used to further add to the credibility of the
             values. Given that the design is symmetric, solving half of it accurately describes the whole structure. At a 13 pound load the
             distribution came out very lopsided. The members directly above the load carry the bulk of it, up to 31.75 pounds in the worst member,
             while one vertical sits at zero.
@@ -109,7 +109,7 @@
 
         <p class="content">
             Moving the connecting members and reorienting them pushed the load factor up to 0.373, and the mode shape changed character. Instead of the
-            whole midspan opening up, the deformation concentrated in the top chord directly above the load, which is where the method of joints said
+            whole midspan opening up, the deformation concentrated in the top member directly above the load, which is where the method of joints said
             the highest forces were. Getting the failure back into the member that is genuinely the most loaded meant the bracing was finally doing its
             job.
         </p>
@@ -131,7 +131,7 @@
             <img src="../details-images/Truss Bridge Project/variant_best.webp" width="1400" height="1213"
                 alt="Buckling study of the chosen layout with a load factor of 0.622" loading="lazy" decoding="async"
                 style="width: 750px; max-width: 100%; height: auto;">
-            <p style="margin-top: 0;"><b>Figure: </b>The layout we built, at a load factor of 0.622.</p>
+            <p style="margin-top: 0;"><b>Figure: </b>The layout built, at a load factor of 0.622.</p>
         </div>
 
         <p class="content">
@@ -151,16 +151,14 @@
             <img src="../details-images/Truss Bridge Project/failure_mode_side.webp" width="1400" height="1145"
                 alt="Buckling amplitude plot of the bridge at a load factor of 0.554" loading="lazy" decoding="async"
                 style="width: 750px; max-width: 100%; height: auto;">
-            <p style="margin-top: 0;"><b>Figure: </b>Buckling mode 1 at 12 lbf, load factor 0.554. The deformation collects in the top chord and the
-                bracing above the load.</p>
+            <p style="margin-top: 0;"><b>Figure: </b>Buckling mode 1 at 12 lbf, load factor 0.554.</p>
         </div>
 
         <div style="display: flex; flex-direction: column; align-items: center;">
             <img src="../details-images/Truss Bridge Project/failure_mode_above.webp" width="1400" height="1217"
                 alt="Buckling amplitude plot seen from above at a load factor of 0.373" loading="lazy" decoding="async"
                 style="width: 750px; max-width: 100%; height: auto;">
-            <p style="margin-top: 0;"><b>Figure: </b>The same failure site from above, load factor 0.373. The top chord and the bracing at midspan move
-                the most, while the end bays stay near zero.</p>
+            <p style="margin-top: 0;"><b>Figure: </b>The same failure site from above, load factor 0.373. </p>
         </div>
 
         <p class="content">
@@ -231,7 +229,7 @@
             I would change is how the joints were treated. Every model I ran assumed the members were connected perfectly, but the glued joints are the
             part I had the least visibility into, and on a structure this light they are where most of the uncertainty actually is. Furthermore, I would
             want to figure out why the buckling studies came out so conservative. The layout we built buckled at a load factor of 0.622 in simulation
-            but the bridge held 19 pounds on the rig, so in theory it should have failed under 18 lbs but didn't. Knowing where that gap comes from
+            but the bridge held 19 pounds on the rig, so in theory it should have failed under 18 lbs. Knowing where that gap comes from
             would let me trust a model like this for sizing and not just for comparison. Finally, I would build the
             fixture earlier. It went through its own revisions while the bridge design was still moving, and the panels that came off the first version
             had the chord lifting away from the profile, which is exactly the kind of error the fixture was supposed to prevent in the first place.

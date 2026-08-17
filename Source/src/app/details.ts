@@ -27,7 +27,7 @@ export const Projects: CardItem[] = [
     },
     {
         title: "UAV Payload Mechanism",
-        description: "Designed and built a hoist mechanism for targeted payload delivery in a UAV competition, featuring a custom gearbox, spring-applied brake, and clutch system for precise and reliable autonomous operation.",
+        description: "I'm designing and iterating on a hoist mechanism for targeted payload delivery in a UAV competition, covering a custom gearbox, spring-applied brake, and clutch system for precise and reliable autonomous operation.",
         category: "Mechatronics",
         date: "4/12/2025",
         skills: ["SolidWorks", "Gearbox Design", "Mechanism Design", "Arduino", "Motor Control", "3D Printing"],
