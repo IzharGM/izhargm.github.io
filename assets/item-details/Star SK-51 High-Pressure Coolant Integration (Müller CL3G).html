@@ -8,6 +8,14 @@
         <h1 class="header">Star SK-51 High-Pressure Coolant Integration (Müller CL3G)</h1>
         <p class="subber">Integrating a Müller CL3G high-pressure coolant unit into a Star SK-51</p>
 
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Star SK-51 High-Pressure Coolant Integration (Müller CL3G)/muller_position.webp"
+                width="1400" height="1050" alt="The Müller CL3G unit standing next to the Star SK-51" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>The Müller unit in relation to the SK-51, with the machine's own coolant pumps and filters in the
+                foreground.</p>
+        </div>
+
         <h2 class="section">Problem</h2>
         <p class="content">
             The Star SK-51 needed higher pressure coolant running through it to properly cool the tools we were using, especially since a lot of our
@@ -17,6 +25,27 @@
             recutting, poor chip evacuation, and a worse surface finish. Given all this, the goal was to integrate a Müller CL3G high-pressure coolant
             unit into the SK-51 to provide the pressure needed for both proper cooling and clean chip removal.
         </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Star SK-51 High-Pressure Coolant Integration (Müller CL3G)/oem_coolant_unit.webp"
+                width="1400" height="1050" alt="The SK-51's existing coolant unit, showing its stacked filters and pumps" loading="lazy"
+                decoding="async" style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>The SK-51's existing coolant unit, the filters and pumps the new lines had to be worked around.</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Star SK-51 High-Pressure Coolant Integration (Müller CL3G)/muller_unit.webp"
+                width="1400" height="1050" alt="The Müller CL3G unit with its rear access panel open" loading="lazy" decoding="async"
+                style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>The Müller CL3G, with its own valve block sitting behind the open access panel.</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Star SK-51 High-Pressure Coolant Integration (Müller CL3G)/muller_nameplate.webp"
+                width="1050" height="1400" alt="The Müller data plate listing the model number, flow rate, and pressure rating" loading="lazy"
+                decoding="async" style="width: 460px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>The unit's data plate, rating it at 40 l/min and 70 bar.</p>
+        </div>
 
         <h2 class="section">Hydraulic and Electrical Considerations</h2>
         <p class="content">
@@ -30,6 +59,23 @@
             to the Senior Manufacturing Quality Engineer for review, and then used it again when the hose and fitting supplier came in so I could
             accurately walk him through exactly what we needed.
         </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Star SK-51 High-Pressure Coolant Integration (Müller CL3G)/schematic.webp"
+                width="1400" height="957" alt="Hand drawn coolant schematic showing the routing to Turret 1, Turret 2, and the sub spindle"
+                loading="lazy" decoding="async" style="width: 750px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>The hand drawn schematic before the final version, working out the runs to Turret 1, Turret 2, and
+                the sub spindle off the Müller pump and the coolant tank, with the adapter and hose size called out at each connection.</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Star SK-51 High-Pressure Coolant Integration (Müller CL3G)/line_labels.webp"
+                width="1050" height="1400" alt="Coolant hoses at the machine, each tagged with a handwritten label" loading="lazy" decoding="async"
+                style="width: 520px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>The lines tagged at the machine end, including the sub spindle and Turret 2 flushing feeds, so the
+                shared runs could be told apart before being separated.</p>
+        </div>
+
         <p class="content">
             The electrical and programming work came out of how the SK-51 handles coolant control. The machine uses its own solenoid valves to determine
             whether high pressure runs through a given line, but the Müller already has its own valve block doing the same job. Rather than run coolant
@@ -38,5 +84,13 @@
             the Müller's valve block instead of its own solenoids, along with programming changes so the SK-51 would still see the coolant system as
             functioning correctly and wouldn't fault out or behave unexpectedly during operation.
         </p>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="../details-images/Star SK-51 High-Pressure Coolant Integration (Müller CL3G)/solenoid_valves.webp"
+                width="1050" height="1400" alt="The SK-51's coolant solenoid valves, labelled YV111 and YV112" loading="lazy" decoding="async"
+                style="width: 520px; max-width: 100%; height: auto;">
+            <p style="margin-top: 0;"><b>Figure: </b>The SK-51's own coolant solenoids, tagged YV111 for the Turret 1 valve and YV112 for Turret 2.
+                These are the valves the Müller's block was meant to take over from.</p>
+        </div>
     </body>
 </html>
